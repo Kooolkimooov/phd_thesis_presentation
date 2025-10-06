@@ -2,6 +2,7 @@
 (function () {
 
 	Reveal.initialize({
+
 		history: true,
 		transition: 'linear',
 		center: false,
@@ -15,12 +16,16 @@
 					}
 				}
 			],
+
+		transition: 'slide',
+		slideNumber: 'c/t',
+
+
 		mathjax2: {
 			config: 'TeX-AMS_HTML-full',
 			TeX: {
 				Macros: {
 					R: '\\mathbb{R}',
-					set: [ '\\left\\{#1 \\; ; \\; #2\\right\\}', 2 ]
 					set: ['\\left\\{#1 \\; ; \\; #2\\right\\}', 2]
 				}
 			}
@@ -30,6 +35,6 @@
 		// RevealMath.MathJax2 (default)
 		// RevealMath.MathJax3
 		// RevealMath.KaTeX
-		plugins: [ RevealMath.MathJax2 ]
+		plugins: [ RevealMath.MathJax2, RelativeNumber ]
 	});
 })();

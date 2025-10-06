@@ -1,6 +1,9 @@
 [submodule "reveal"]
 	path = vendor/reveal
 	url = https://github.com/hakimel/reveal.js.git
+[submodule "reveal-relativenumber"]
+	path = vendor/reveal-relativenumber
+	url = https://github.com/Martinomagnifico/reveal.js-relativenumber.git
 [submodule "Reveal-Title-Footer"]
 	path = vendor/Reveal-Title-Footer
 	url = https://github.com/e-gor/Reveal.js-Title-Footer.git
