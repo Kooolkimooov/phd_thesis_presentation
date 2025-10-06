@@ -1,22 +1,27 @@
 
-(function() {
-	// Ensure Reveal is available before initializing
-	if (typeof Reveal === 'undefined' || typeof RevealMath === 'undefined') {
-		console.error('Reveal.js or RevealMath not found. Ensure scripts are loaded before init.js');
-		return;
-	}
+(function () {
 
-	// Initialize Reveal with MathJax 2 and custom TeX macros
 	Reveal.initialize({
 		history: true,
 		transition: 'linear',
+		center: false,
 
+		dependencies:
+			[
+				{
+					src: './vendor/Reveal-Title-Footer/plugin/title-footer/title-footer.js',
+					async: true, callback: function () {
+						title_footer.initialize(null, 'hsla(0, 0%, 100%, 0.00)');
+					}
+				}
+			],
 		mathjax2: {
 			config: 'TeX-AMS_HTML-full',
 			TeX: {
 				Macros: {
 					R: '\\mathbb{R}',
 					set: [ '\\left\\{#1 \\; ; \\; #2\\right\\}', 2 ]
+					set: ['\\left\\{#1 \\; ; \\; #2\\right\\}', 2]
 				}
 			}
 		},

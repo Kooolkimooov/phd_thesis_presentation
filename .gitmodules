@@ -1,3 +1,6 @@
 [submodule "reveal"]
 	path = vendor/reveal
 	url = https://github.com/hakimel/reveal.js.git
+[submodule "Reveal-Title-Footer"]
+	path = vendor/Reveal-Title-Footer
+	url = https://github.com/e-gor/Reveal.js-Title-Footer.git

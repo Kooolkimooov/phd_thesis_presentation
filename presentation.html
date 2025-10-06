@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <link rel="stylesheet" href="./vendor/reveal/dist/reveal.css">
+    <link rel="stylesheet" href="./vendor/Reveal-Title-Footer/plugin/title-footer/title-footer.css">
     <link rel="stylesheet" href="./theme.css" id="theme">
 </head>
 
@@ -19,7 +20,7 @@
 
         <div class="slides">
 
-            <section>
+            <section data-state="no-title-footer">
                 <h3>Dynamic Control of a Chain of Underwater Robots</h3>
 
                 <p>Martin Filliung</p>
@@ -65,7 +66,8 @@
                     </tr>
                 </table>
 
-                <div style="display:flex; justify-content:center; align-items:center; gap:1.5rem; flex-wrap:nowrap;">
+                <div
+                    style="display:flex; justify-content:center; align-items:center; gap:1.5rem; flex-wrap:nowrap; margin-top:1cm;">
 
                     <img src="media/logo-lis.png" style="height: 100px;">
                     <img src="media/logo-cosmer-200.jpg" style="height: 100px;">
@@ -76,7 +78,21 @@
 
             </section>
 
-         </div>
+            <section>
+
+                <h3>Outline</h3>
+
+                <p style="height:2cm;" />
+
+                <p class="fragment fade-in" , style="text-align: left;">Introduction</p>
+                <p class="fragment fade-in" , style="text-align: left;">State of the Art</p>
+                <p class="fragment fade-in" , style="text-align: left;">Cable Modelling</p>
+                <p class="fragment fade-in" , style="text-align: left;">Robot Chain Control</p>
+                <p class="fragment fade-in" , style="text-align: left;">Conclusion</p>
+
+            </section>
+
+        </div>
 
 </body>
 
