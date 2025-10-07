@@ -1,0 +1,76 @@
+
+\newcommand\scal[1]{#1}
+\newcommand\luscal[2]{{#1}^{#2}}
+\newcommand\ldscal[2]{{#1}_{#2}}
+\newcommand\llscal[3]{{#1}^{#2}_{#3}}
+
+\newcommand\coord[2]{{}^{#2}\!{#1}}
+\newcommand\lucoord[3]{{}^{#2}\!{#1}^{#3}}
+\newcommand\ldcoord[3]{{}^{#2}\!{#1}_{#3}}
+\newcommand\llcoord[4]{{}^{#2}\!{#1}^{#3}_{#4}}
+
+\newcommand\point[1]{\mathbf{{#1}}}
+\newcommand\fpoint[2]{{}^{#2}\!\point{#1}}
+\newcommand\lupoint[2]{\point{#1}^{#2}}
+\newcommand\ldpoint[2]{\point{#1}_{#2}}
+\newcommand\llpoint[3]{\point{#1}^{#2}_{#3}}
+\newcommand\flupoint[3]{\fpoint{#1}{#2}^{#3}}
+\newcommand\fldpoint[3]{\fpoint{#1}{#2}_{#3}}
+\newcommand\fllpoint[4]{\fpoint{#1}{#2}^{#3}_{#4}}
+
+\newcommand\vect[1]{\point{#1}}
+\newcommand\fvect[2]{{}^{#2}\!\vect{#1}}
+\newcommand\luvect[2]{\vect{#1}^{#2}}
+\newcommand\ldvect[2]{\vect{#1}_{#2}}
+\newcommand\llvect[3]{\vect{#1}^{#2}_{#3}}
+\newcommand\fluvect[3]{\fvect{#1}{#2}^{#3}}
+\newcommand\fldvect[3]{\fvect{#1}{#2}_{#3}}
+\newcommand\fllvect[4]{\fvect{#1}{#2}^{#3}_{#4}}
+
+\newcommand\matr[1]{\mathbf{{#1}}}
+\newcommand\lrumatr[2]{\matr{#1}^{#2}}
+\newcommand\llumatr[2]{{}^{#2}\!\matr{#1}}
+\newcommand\lrdmatr[2]{\matr{#1}_{#2}}
+\newcommand\lldmatr[2]{{}_{#2}\!\matr{#1}}
+\newcommand\lrmatr[3]{\matr{#1}^{#2}_{#3}}
+\newcommand\llmatr[3]{{}^{#2}_{#3}\!\matr{#1}}
+\newcommand\llrmatr[5]{{}^{#2}_{#3}\!\matr{#1}^{#4}_{#5}}
+
+\newcommand\res[1]{\varepsilon_{#1}}
+\newcommand\lures[2]{\varepsilon_{#1}^{#2}}
+
+\newcommand\lplane[1]{\mathcal{P}_{#1}}
+\newcommand\lframe[1]{\mathcal{F}_{#1}}
+
+\newcommand\fpointthree[2]{\fpoint{#1}{#2}=\left(\ldcoord{#1}{#2}{x}, \ldcoord{#1}{#2}{y},\ldcoord{#1}{#2}{z}\right)}
+\newcommand\flupointthree[3]{\flupoint{#1}{#2}{#3}=\left(\llcoord{#1}{#2}{#3}{x}, \llcoord{#1}{#2}{#3}{y},\llcoord{#1}{#2}{#3}{z}\right)}
+\newcommand\fldpointthree[3]{\fldpoint{#1}{#2}{#3}=\left(\ldcoord{#1}{#2}{#3,x}, \ldcoord{#1}{#2}{#3,y},\ldcoord{#1}{#2}{#3,z}\right)}
+\newcommand\fllpointthree[4]{\fllpoint{#1}{#2}{#3}{#4}=\left(\llcoord{#1}{#2}{#3}{#4,x}, \llcoord{#1}{#2}{#3}{#4,y},\ldcoord{#1}{#2}{#3}{#4,z}\right)}
+
+\newcommand\fvectthree[2]{\fvect{#1}{#2}=\left(\ldcoord{#1}{#2}{x}, \ldcoord{#1}{#2}{y},\ldcoord{#1}{#2}{z}\right)}
+\newcommand\fluvectthree[3]{\fluvect{#1}{#2}{#3}=\left(\llcoord{#1}{#2}{#3}{x}, \llcoord{#1}{#2}{#3}{y},\llcoord{#1}{#2}{#3}{z}\right)}
+\newcommand\fldvectthree[3]{\fldvect{#1}{#2}{#3}=\left(\ldcoord{#1}{#2}{#3,x}, \ldcoord{#1}{#2}{#3,y},\ldcoord{#1}{#2}{#3,z}\right)}
+
+\newcommand\fvectn[3]{\fvect{#1}{#2}=\left(\ldcoord{#1}{#2}{0}, \hdots{},\ldcoord{#1}{#2}{#3-1}\right)}
+\newcommand\fluvectn[4]{\fluvect{#1}{#2}{#3}=\left(\llcoord{#1}{#2}{#3}{0}, \hdots{},\llcoord{#1}{#2}{#3}{#4-1}\right)}
+\newcommand\fldvectn[4]{\fldvect{#1}{#2}{#3}=\left(\ldcoord{#1}{#2}{#3,0}, \hdots{},\ldcoord{#1}{#2}{#3,#4-1}\right)}
+
+\newcommand\lplanefullxy[1]{\lplane{#1}=\left(\ldpoint{O}{#1}, \ldvect{x}{#1},\ldvect{y}{#1}\right)}
+\newcommand\lplanefullxz[1]{\lplane{#1}=\left(\ldpoint{O}{#1}, \ldvect{x}{#1},\ldvect{z}{#1}\right)}
+\newcommand\lplanefullyz[1]{\lplane{#1}=\left(\ldpoint{O}{#1}, \ldvect{y}{#1},\ldvect{z}{#1}\right)}
+
+\newcommand\lframefull[1]{\lframe{#1}=\left(\ldpoint{O}{#1},\ldvect{x}{#1},\ldvect{y}{#1},\ldvect{z}{#1}\right)}
+
+\newcommand\inzeroton{\in\{0,\hdots, n\}}
+
+\newcommand\catl{\scal{l}}
+\newcommand\catL{\scal{L}}
+\newcommand\catC{\scal{C}}
+\newcommand\catH{\scal{H}}
+\newcommand\catdH{\scal{\Delta H}}
+\newcommand\catD{\scal{D}}
+\newcommand\catdD{\scal{\Delta D}}
+
+\newcommand\lagr{\mathcal{L}}
+
+\newcommand\mpch{\scal{h}}
