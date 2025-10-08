@@ -81,19 +81,23 @@
 
                 </div>
 
+                <aside class="notes">
+                    test
+                </aside>
+
             </section>
 
             <section>
 
                 <h3>Outline</h3>
 
-                <div style="height:2cm;" />
-
-                <p class="fragment fade-in" , style="text-align: left; padding-left: 5cm;">• Introduction</p>
-                <p class="fragment fade-in" , style="text-align: left; padding-left: 5cm;">• State of the Art</p>
-                <p class="fragment fade-in" , style="text-align: left; padding-left: 5cm;">• Cable Modelling</p>
-                <p class="fragment fade-in" , style="text-align: left; padding-left: 5cm;">• Robot Chain Control</p>
-                <p class="fragment fade-in" , style="text-align: left; padding-left: 5cm;">• Conclusion</p>
+                <ul style="padding-top: 3cm;">
+                    <li class="fragment fade-in" , style="text-align: left;">Introduction</li>
+                    <li class="fragment fade-in" , style="text-align: left;">State of the Art</li>
+                    <li class="fragment fade-in" , style="text-align: left;">Cable Modelling</li>
+                    <li class="fragment fade-in" , style="text-align: left;">Robot Chain Control</li>
+                    <li class="fragment fade-in" , style="text-align: left;">Conclusion</li>
+                </ul>
 
             </section>
 
@@ -119,24 +123,36 @@
 
                 <h3>Robot Chain Control</h3>
 
-                <p>Robot dynamics:</p>
-                <div sty/>
-                <p style="font-size: 90%;">
-                    \begin{align}
+                <section>
 
-                    \vect{\dot{\eta}} & = \matr{T}\left(\vect{\eta}\right) \vect{\nu} \label{rcc_rcm_srd_kinematics} \\
-                    \lrdmatr{M}{rb} \vect{\dot{\nu}} + \lrdmatr{M}{a} \ldvect{\dot{\nu}}{r}
-                     + \lrdmatr{C}{rb}\left(\vect{\nu}\right) \vect{\nu}
-                    & + \left(\lrdmatr{C}{a}\left(\ldvect{\nu}{r}\right) + \matr{D}\left(\ldvect{\nu}{r}\right)\right)
-                    \ldvect{\nu}{r}
-                    + \vect{s}\left(\vect{\eta}\right) = \vect{\omega} + \vect{\tau}
+                    <p>Robot dynamics:</p>
+                    <div sty />
+                    <p style="font-size: 90%;">
+                        \begin{align}
 
-                    \end{align}
-                </div>
+                        \vect{\dot{\eta}} & = \matr{T}\left(\vect{\eta}\right) \vect{\nu} \label{rcc_rcm_srd_kinematics}
+                        \\
+                        \lrdmatr{M}{rb} \vect{\dot{\nu}} + \lrdmatr{M}{a} \ldvect{\dot{\nu}}{r}
+                        + \lrdmatr{C}{rb}\left(\vect{\nu}\right) \vect{\nu}
+                        & + \left(\lrdmatr{C}{a}\left(\ldvect{\nu}{r}\right) +
+                        \matr{D}\left(\ldvect{\nu}{r}\right)\right)
+                        \ldvect{\nu}{r}
+                        + \vect{s}\left(\vect{\eta}\right) = \vect{\omega} + \vect{\tau}
 
-                 <p class="fragment fade-in" , style="text-align: left;">$\vect{\eta} = \left[\scal{x}, \scal{y}, \scal{z}, \scal{\phi}, \scal{\theta}, \scal{\psi}\right]^{\top}$</p>
-                 <p class="fragment fade-in" , style="text-align: left;">$\vect{\nu} = \left[\scal{u}, \scal{v}, \scal{w}, \scal{p}, \scal{q}, \scal{r}\right]^{\top}$</p>
-                 <p class="fragment fade-in" , style="text-align: left;">$\matr{T}\left(\vect{\eta}\right)$</p>
+                        \end{align}
+                    </p>
+
+                    <p class="fragment fade-in" , style="text-align: left;">$\vect{\eta} = \left[\scal{x}, \scal{y},
+                        \scal{z},
+                        \scal{\phi}, \scal{\theta}, \scal{\psi}\right]^{\top}$</p>
+                    <p class="fragment fade-in" , style="text-align: left;">$\vect{\nu} = \left[\scal{u}, \scal{v},
+                        \scal{w},
+                        \scal{p}, \scal{q}, \scal{r}\right]^{\top}$</p>
+                    <p class="fragment fade-in" , style="text-align: left;">$\matr{T}\left(\vect{\eta}\right)$</p>
+
+                </section>
+
+                <section></section>
 
             </section>
 
@@ -153,6 +169,8 @@
 <script src="./vendor/reveal/dist/reveal.js"></script>
 <script src="./vendor/reveal/plugin/math/math.js"></script>
 <script src="./vendor/reveal-relativenumber/plugin/relativenumber/relativenumber.js"></script>
+<script src="./vendor/reveal-onetimer/onetimer.js"></script>
+<script src="./vendor/reveal/plugin/notes/notes.js"></script>
 <script src="./init.js"></script>
 
 </html>

@@ -7,3 +7,6 @@
 [submodule "Reveal-Title-Footer"]
 	path = vendor/Reveal-Title-Footer
 	url = https://github.com/e-gor/Reveal.js-Title-Footer.git
+[submodule "reveal-onetimer"]
+	path = vendor/reveal-onetimer
+	url = https://github.com/tpoindex/reveal-onetimer.git

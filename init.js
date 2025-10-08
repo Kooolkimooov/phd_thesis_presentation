@@ -55,8 +55,12 @@
 	Reveal.initialize({
 
 		history: true,
-		transition: 'linear',
+		transition: 'slide',
+		transitionSpeed: 'fast',
 		center: false,
+		slideNumber: 'c/t',
+		progress: false,
+		navigationMode: 'linear',
 
 		dependencies:
 			[
@@ -65,11 +69,8 @@
 					async: true, callback: function () {
 						title_footer.initialize(null, 'hsla(0, 0%, 100%, 0.00)');
 					}
-				}
+				},
 			],
-
-		transition: 'slide',
-		slideNumber: 'c/t',
 
 		mathjax3: {
 			mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
@@ -85,10 +86,22 @@
 			},
 		},
 
+		symbolperslideprogress: {
+			position: "left", // left/right
+			align: "horizontal", // vertical/horizontal
+			symbolColor: "", // Colors like red/#ff0000/rgb(255, 0, 0)
+			symbolActiveColor: "",
+		},
+
 		// There are three typesetters available
 		// RevealMath.MathJax2 (default)
 		// RevealMath.MathJax3
 		// RevealMath.KaTeX
-		plugins: [RevealMath.MathJax3, RelativeNumber]
+		plugins: [
+			RevealMath.MathJax3,
+			RelativeNumber,
+			OneTimer,
+			RevealNotes
+		]
 	});
 })();
