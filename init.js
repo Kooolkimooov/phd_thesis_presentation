@@ -103,7 +103,7 @@
 		plugins: [
 			RevealMath.MathJax3,
 			RelativeNumber,
-			OneTimer,
+			// OneTimer,
 			RevealNotes
 		]
 	});
