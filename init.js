@@ -62,6 +62,9 @@
 		progress: false,
 		navigationMode: 'linear',
 
+		width: 1920,
+		height: 1080,
+
 		dependencies:
 			[
 				{

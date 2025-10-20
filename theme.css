@@ -21,12 +21,12 @@ section.has-light-background h6 {
  *********************************************/
 :root {
   --r-background-color: #ffffff;
-  --r-main-font: Jetbrains Mono NF, monospace;
+  --r-main-font: Jetbrains Mono, monospace;
   --r-main-font-size: 40px;
   --r-main-color: #000000;
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 40px 0;
-  --r-heading-font: Jetbrains Mono NF, monospace;
+  --r-heading-font: Jetbrains Mono, monospace;
   --r-heading-color: #000000;
   --r-heading-line-height: 1.2;
   --r-heading-letter-spacing: -0.03em;
