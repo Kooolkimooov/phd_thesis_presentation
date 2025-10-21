@@ -363,12 +363,14 @@ section.has-light-background h6 {
   bottom: 0;
   right: auto;
   width: auto;
+  color: var(--r-main-color);
   min-width: max-content;
-  padding-left: 4.5cm;
+  padding-left: 6cm;
   background: rgba(0, 0, 0, 0);
 }
 
 .reveal .menubar .slide-number {
+  font: var(--r-main-font);
   font-size: larger;
   font-weight: bolder;
   background: transparent;
