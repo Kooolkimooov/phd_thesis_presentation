@@ -107,4 +107,45 @@
 			RevealNotes
 		]
 	});
+
+	// Control media playback on fragment reveal/hide
+	Reveal.on('fragmentshown', event => {
+		const frag = event.fragment;
+		if (!frag) return;
+		// If the fragment itself is a video/audio marked for play
+		if ((frag.tagName === 'VIDEO' || frag.tagName === 'AUDIO') && frag.hasAttribute('data-play-on-fragment')) {
+			try { frag.play(); } catch { /* ignore */ }
+		}
+		// Or if the fragment contains media marked for play
+		const media = frag.querySelectorAll('video[data-play-on-fragment], audio[data-play-on-fragment]');
+		media.forEach(m => { try { m.play(); } catch { /* ignore */ } });
+	});
+
+	Reveal.on('fragmenthidden', event => {
+		const frag = event.fragment;
+		if (!frag) return;
+		const toHandle = [];
+		if ((frag.tagName === 'VIDEO' || frag.tagName === 'AUDIO') && frag.hasAttribute('data-play-on-fragment')) {
+			toHandle.push(frag);
+		}
+		frag.querySelectorAll('video[data-play-on-fragment], audio[data-play-on-fragment]').forEach(el => toHandle.push(el));
+		toHandle.forEach(m => {
+			try { m.pause(); } catch { /* ignore */ }
+			// Reset to start so a subsequent show restarts it
+			try { m.currentTime = 0; } catch { /* ignore */ }
+		});
+	});
+
+	// When leaving a slide, stop and reset any playing media
+	Reveal.on('slidechanged', (event) => {
+		const prev = event.previousSlide;
+		const current = event.currentSlide;
+		[prev, current].forEach(sec => {
+			if (!sec) return;
+			sec.querySelectorAll('video[data-play-on-fragment], audio[data-play-on-fragment]').forEach(m => {
+				try { m.pause(); } catch { /* ignore */ }
+				try { m.currentTime = 0; } catch { /* ignore */ }
+			});
+		});
+	});
 })();
