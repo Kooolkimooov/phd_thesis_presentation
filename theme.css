@@ -384,3 +384,11 @@ section.has-light-background h6 {
     background-color: var(--r-background-color);
   }
 }
+
+.fragment.rotate45 {
+  transform: rotate(0deg);
+}
+
+.fragment.rotate45.visible {
+  transform: rotate(45deg);
+}
