@@ -385,10 +385,27 @@ section.has-light-background h6 {
   }
 }
 
+
+/*********************************************
+ * Custom fragments
+ *********************************************/
+
 .fragment.rotate45 {
+  display: inline-block;
   transform: rotate(0deg);
+  transform-origin: center center;
+  transition: transform 600ms ease-in-out;
+  will-change: transform;
 }
 
-.fragment.rotate45.visible {
+.fragment.rotate45.visible:not(.current-fragment) {
+  transform: rotate(0deg);
+}
+.fragment.rotate45.visible.current-fragment {
   transform: rotate(45deg);
+}
+
+.reveal .fragment.visible .fragment.rotate45:not(.visible) {
+  opacity: 1 !important;
+  visibility: inherit !important;
 }
