@@ -387,18 +387,28 @@ section.has-light-background h6 {
   }
 }
 
+/*********************************************
+ * Custom
+ *********************************************/
+
+
+/* Chart containers: ensure stable sizing and no hover-induced reflow */
+.reveal .chart-container {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+}
+
+.reveal .chart-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
 
 /*********************************************
  * Custom fragments
  *********************************************/
 
-.fragment.rotate45 {
-  display: inline-block;
-  transform: rotate(0deg);
-  transform-origin: center center;
-  transition: transform 600ms ease-in-out;
-  will-change: transform;
-}
 
 .fragment.rotate {
   display: inline-block;
@@ -407,9 +417,11 @@ section.has-light-background h6 {
   transition: transform 500ms ease-in-out;
   will-change: transform;
 }
+
 .fragment.rotate.visible:not(.current-fragment) {
   transform: rotate(0deg);
 }
+
 .fragment.rotate.visible.current-fragment {
   transform: rotate(var(--rotate-angle, 90deg));
 }

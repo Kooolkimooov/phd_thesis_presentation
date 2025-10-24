@@ -10,3 +10,12 @@
 [submodule "reveal-onetimer"]
 	path = vendor/reveal-onetimer
 	url = https://github.com/tpoindex/reveal-onetimer.git
+[submodule "Chart"]
+	path = vendor/Chart
+	url = https://github.com/chartjs/Chart.js.git
+[submodule "reveal-plugins"]
+	path = vendor/reveal-plugins
+	url = https://github.com/rajgoel/reveal.js-plugins.git
+[submodule "chartjs-chart-boxplot"]
+	path = vendor/chartjs-chart-boxplot
+	url = https://github.com/sgratzl/chartjs-chart-boxplot.git

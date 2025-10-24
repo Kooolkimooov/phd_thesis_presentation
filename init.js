@@ -103,7 +103,8 @@
 			RevealMath.MathJax3,
 			RelativeNumber,
 			OneTimer,
-			RevealNotes
+			RevealNotes,
+			RevealChart
 		]
 	});
 
