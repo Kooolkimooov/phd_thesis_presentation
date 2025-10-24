@@ -418,3 +418,15 @@ section.has-light-background h6 {
   opacity: 1 !important;
   visibility: inherit !important;
 }
+
+/* Keep media that should play on a fragment visible before activation */
+.reveal .slides .fragment[data-play-on-fragment] {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* If the fragment is on a wrapper, keep it visible before the step */
+.reveal .slides .fragment.keep-visible-fragment {
+  opacity: 1 !important;
+  visibility: visible !important;
+}

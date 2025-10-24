@@ -46,7 +46,6 @@
 				macros[name] = argCount > 0 ? [definition, argCount] : definition;
 			}
 		}
-		console.log('Loaded TeX macros:', macros);
 		return macros;
 	}
 
@@ -108,30 +107,84 @@
 		]
 	});
 
-	// Control media playback on fragment reveal/hide
+	// Preload media thumbnails so videos/audio are visible before their fragment plays
+	Reveal.on('ready', () => {
+		document.querySelectorAll('video[data-play-on-fragment], audio[data-play-on-fragment]').forEach(m => {
+			try {
+				if (!m.preload || m.preload === 'none') m.preload = 'metadata';
+				// Trigger loading if the browser hasn't started
+				if (typeof m.load === 'function') m.load();
+			} catch { /* ignore */ }
+
+			// If the fragment is on a parent wrapper, keep that wrapper visible pre-fragment
+			try {
+				const isSelfFragment = m.classList.contains('fragment');
+				if (!isSelfFragment) {
+					const wrapperFrag = m.closest('.fragment');
+					if (wrapperFrag) wrapperFrag.classList.add('keep-visible-fragment');
+				}
+			} catch { /* ignore */ }
+		});
+	});
+
 	Reveal.on('fragmentshown', event => {
 		const frag = event.fragment;
 		if (!frag) return;
-		// If the fragment itself is a video/audio marked for play
+
+		// If this fragment has a fragment index, act on ALL fragments in the current slide with the same index
+		const idx = frag.getAttribute('data-fragment-index');
+		const slide = Reveal.getCurrentSlide();
+		if (idx && slide) {
+			const sameIndexFrags = slide.querySelectorAll(`.fragment[data-fragment-index="${idx}"]`);
+			const media = [];
+			sameIndexFrags.forEach(f => {
+				if ((f.tagName === 'VIDEO' || f.tagName === 'AUDIO') && f.hasAttribute('data-play-on-fragment')) {
+					media.push(f);
+				}
+				f.querySelectorAll('video[data-play-on-fragment], audio[data-play-on-fragment]').forEach(m => media.push(m));
+			});
+			media.forEach(m => {
+				// Ensure metadata is loaded so the first frame can render pre-play
+				try { if (m.preload !== 'auto') m.preload = 'metadata'; } catch {}
+				try { m.play(); } catch { /* ignore */ }
+			});
+			return; // done
+		}
+
+		// Fallback: handle only this fragment
 		if ((frag.tagName === 'VIDEO' || frag.tagName === 'AUDIO') && frag.hasAttribute('data-play-on-fragment')) {
+			try { if (frag.preload !== 'auto') frag.preload = 'metadata'; } catch {}
 			try { frag.play(); } catch { /* ignore */ }
 		}
-		// Or if the fragment contains media marked for play
-		const media = frag.querySelectorAll('video[data-play-on-fragment], audio[data-play-on-fragment]');
-		media.forEach(m => { try { m.play(); } catch { /* ignore */ } });
+		frag.querySelectorAll('video[data-play-on-fragment], audio[data-play-on-fragment]').forEach(m => {
+			try { if (m.preload !== 'auto') m.preload = 'metadata'; } catch {}
+			try { m.play(); } catch { /* ignore */ }
+		});
 	});
 
 	Reveal.on('fragmenthidden', event => {
 		const frag = event.fragment;
 		if (!frag) return;
+
+		const idx = frag.getAttribute('data-fragment-index');
+		const slide = Reveal.getCurrentSlide();
 		const toHandle = [];
-		if ((frag.tagName === 'VIDEO' || frag.tagName === 'AUDIO') && frag.hasAttribute('data-play-on-fragment')) {
-			toHandle.push(frag);
+		if (idx && slide) {
+			slide.querySelectorAll(`.fragment[data-fragment-index="${idx}"]`).forEach(f => {
+				if ((f.tagName === 'VIDEO' || f.tagName === 'AUDIO') && f.hasAttribute('data-play-on-fragment')) {
+					toHandle.push(f);
+				}
+				f.querySelectorAll('video[data-play-on-fragment], audio[data-play-on-fragment]').forEach(el => toHandle.push(el));
+			});
+		} else {
+			if ((frag.tagName === 'VIDEO' || frag.tagName === 'AUDIO') && frag.hasAttribute('data-play-on-fragment')) {
+				toHandle.push(frag);
+			}
+			frag.querySelectorAll('video[data-play-on-fragment], audio[data-play-on-fragment]').forEach(el => toHandle.push(el));
 		}
-		frag.querySelectorAll('video[data-play-on-fragment], audio[data-play-on-fragment]').forEach(el => toHandle.push(el));
+
 		toHandle.forEach(m => {
 			try { m.pause(); } catch { /* ignore */ }
-			// Reset to start so a subsequent show restarts it
 			try { m.currentTime = 0; } catch { /* ignore */ }
 		});
 	});
@@ -148,4 +201,5 @@
 			});
 		});
 	});
+
 })();
