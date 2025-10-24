@@ -8,14 +8,12 @@
     "start": "node scripts/serve.cjs"
   },
   "dependencies": {
-    "chart.js": "^4.4.4",
-    "@sgratzl/chartjs-chart-boxplot": "^4.4.1",
-    "reveal-onetimer": "github:tpoindex/reveal-onetimer",
-    "reveal.js": "^5.2.1",
-    "reveal.js-title-footer": "github:e-gor/Reveal.js-Title-Footer",
+    "@sgratzl/chartjs-chart-boxplot": "^4.4.5",
+    "chart.js": "^4.5.1",
+    "mathjax": "^3.2.2",
+    "reveal.js": "github:hakimel/reveal.js#master",
     "reveal.js-plugins": "^4.6.0",
-    "reveal.js-relativenumber": "^1.0.2",
-    "mathjax": "^3"
+    "reveal.js-title-footer": "github:e-gor/Reveal.js-Title-Footer"
   },
   "devDependencies": {
     "http-server": "^14.1.1",

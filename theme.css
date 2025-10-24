@@ -395,7 +395,6 @@ section.has-light-background h6 {
  * Custom fragments
  *********************************************/
 
-
 .fragment.rotate {
   display: inline-block;
   transform: rotate(0deg);

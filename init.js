@@ -64,10 +64,6 @@
 		width: 1920,
 		height: 1080,
 
-		// Note: Reveal.js v5 removed the legacy `dependencies` loader. Third-party scripts
-		// are included via <script> tags in presentation.html. We initialize Title-Footer
-		// after Reveal is ready below.
-
 		mathjax3: {
 			mathjax: './node_modules/mathjax/es5/tex-chtml.js',
 			tex: {
@@ -82,27 +78,17 @@
 			},
 		},
 
-		symbolperslideprogress: {
-			position: "left", // left/right
-			align: "horizontal", // vertical/horizontal
-			symbolColor: "", // Colors like red/#ff0000/rgb(255, 0, 0)
-			symbolActiveColor: "",
-		},
-
 		// There are three typesetters available
 		// RevealMath.MathJax2 (default)
 		// RevealMath.MathJax3
 		// RevealMath.KaTeX
 		plugins: [
 			RevealMath.MathJax3,
-			RelativeNumber,
-			OneTimer,
 			RevealNotes,
 			RevealChart
 		]
 	});
 
-	// Ensure slide number typography overrides stick even if plugins move/replace the element
 	Reveal.on('ready', () => {
 		try {
 			const rn = document.querySelector('.reveal > .slide-number, .reveal .slides ~ .slide-number');
@@ -158,7 +144,7 @@
 			});
 			media.forEach(m => {
 				// Ensure metadata is loaded so the first frame can render pre-play
-				try { if (m.preload !== 'auto') m.preload = 'metadata'; } catch {}
+				try { if (m.preload !== 'auto') m.preload = 'metadata'; } catch { }
 				try { m.play(); } catch { /* ignore */ }
 			});
 			return; // done
@@ -166,11 +152,11 @@
 
 		// Fallback: handle only this fragment
 		if ((frag.tagName === 'VIDEO' || frag.tagName === 'AUDIO') && frag.hasAttribute('data-play-on-fragment')) {
-			try { if (frag.preload !== 'auto') frag.preload = 'metadata'; } catch {}
+			try { if (frag.preload !== 'auto') frag.preload = 'metadata'; } catch { }
 			try { frag.play(); } catch { /* ignore */ }
 		}
 		frag.querySelectorAll('video[data-play-on-fragment], audio[data-play-on-fragment]').forEach(m => {
-			try { if (m.preload !== 'auto') m.preload = 'metadata'; } catch {}
+			try { if (m.preload !== 'auto') m.preload = 'metadata'; } catch { }
 			try { m.play(); } catch { /* ignore */ }
 		});
 	});
@@ -215,13 +201,13 @@
 		});
 	});
 
-		// Initialize Title-Footer once Reveal is ready (script tag is loaded in presentation.html)
-		Reveal.on('ready', () => {
-			try {
-				if (typeof title_footer !== 'undefined' && title_footer && typeof title_footer.initialize === 'function') {
-					title_footer.initialize(null, 'hsla(0, 0%, 100%, 0.00)');
-				}
-			} catch { /* ignore */ }
-		});
+	// Initialize Title-Footer once Reveal is ready (script tag is loaded in presentation.html)
+	Reveal.on('ready', () => {
+		try {
+			if (typeof title_footer !== 'undefined' && title_footer && typeof title_footer.initialize === 'function') {
+				title_footer.initialize(null, 'hsla(0, 0%, 100%, 0.00)');
+			}
+		} catch { /* ignore */ }
+	});
 
 })();
