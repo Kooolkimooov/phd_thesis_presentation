@@ -21,6 +21,12 @@
         <link rel="stylesheet" href="./theme.css" id="theme">
     </head>
 
+    <div style="display: none;">
+        $\require{physics}$
+        $require{asmmath}$
+        $\DeclareMathOperator*{\argmin}{arg\!\min}$
+    </div>
+
     <body>
         <div class="reveal">
 
@@ -361,6 +367,47 @@
                             </div>
 
                         </div>
+
+                        <p class="fragment fade-in">
+                            Results in 129 recorded sequences over all combinations
+                        </p>
+
+                    </section>
+
+                    <section>
+
+                        <h3>
+                            Accuracy metric
+                        </h3>
+
+                        <p>
+                            $\res{\theta\gamma}(\theta, \gamma) = \frac{1}{n} \sum_{k=0}^{n} \norm{\fllpoint{p}{w}{m}{k}
+                            - \fllpoint{p}{w}{\theta\gamma}{k}(\theta, \gamma)}$
+                        </p>
+
+                        <span class="fragment fade-in">
+
+                            <h3 style="padding-top: 3cm;">
+                                Computation of the augmentation parameters
+                            </h3>
+
+                            <p>
+                                $(\theta, \gamma) = \argmin_{(\theta, \gamma) \in [-\pi, \pi]^2}
+                                \res{\theta\gamma}(\theta, \gamma)$
+                            </p>
+
+                            <p class="fragment fade-in" style="padding-top: 1cm;">
+                                In order to asses the maximum potential accuracy of the augmented catenary model
+                            </p>
+                        </span>
+
+                    </section>
+
+                    <section>
+
+                        <h3>
+                            Results
+                        </h3>
 
                     </section>
 
