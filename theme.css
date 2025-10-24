@@ -82,6 +82,7 @@ section.has-light-background h6 {
 /*********************************************
  * HEADERS
  *********************************************/
+
 .reveal h1,
 .reveal h2,
 .reveal h3,
@@ -122,6 +123,7 @@ section.has-light-background h6 {
 /*********************************************
  * OTHER
  *********************************************/
+
 .reveal p {
   margin: var(--r-block-margin) 0;
   line-height: 1.3;
@@ -309,6 +311,7 @@ section.has-light-background h6 {
 /*********************************************
  * LINKS
  *********************************************/
+
 .reveal a {
   color: var(--r-link-color);
   text-decoration: none;
@@ -329,6 +332,7 @@ section.has-light-background h6 {
 /*********************************************
  * Frame helper
  *********************************************/
+
 .reveal .r-frame {
   border: 4px solid var(--r-main-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -346,6 +350,7 @@ section.has-light-background h6 {
 /*********************************************
  * NAVIGATION CONTROLS
  *********************************************/
+
 .reveal .controls {
   color: var(--r-link-color);
 }
@@ -353,34 +358,16 @@ section.has-light-background h6 {
 /*********************************************
  * PROGRESS BAR
  *********************************************/
+
 .reveal .progress {
   background: rgba(0, 0, 0, 0.2);
   color: var(--r-link-color);
 }
 
-
-.reveal .menubar {
-  bottom: 0;
-  right: auto;
-  width: auto;
-  color: var(--r-main-color);
-  min-width: max-content;
-  padding-left: 6cm;
-  background: rgba(0, 0, 0, 0);
-}
-
-.reveal .menubar .slide-number {
-  font: var(--r-main-font);
-  font-size: larger;
-  font-weight: bolder;
-  background: transparent;
-  color: var(--r-main-color);
-  white-space: nowrap;
-}
-
 /*********************************************
  * PRINT BACKGROUND
  *********************************************/
+
 @media print {
   .backgrounds {
     background-color: var(--r-background-color);
@@ -390,7 +377,6 @@ section.has-light-background h6 {
 /*********************************************
  * Custom
  *********************************************/
-
 
 /* Chart containers: ensure stable sizing and no hover-induced reflow */
 .reveal .chart-container {

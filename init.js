@@ -64,18 +64,12 @@
 		width: 1920,
 		height: 1080,
 
-		dependencies:
-			[
-				{
-					src: './vendor/Reveal-Title-Footer/plugin/title-footer/title-footer.js',
-					async: true, callback: function () {
-						title_footer.initialize(null, 'hsla(0, 0%, 100%, 0.00)');
-					}
-				},
-			],
+		// Note: Reveal.js v5 removed the legacy `dependencies` loader. Third-party scripts
+		// are included via <script> tags in presentation.html. We initialize Title-Footer
+		// after Reveal is ready below.
 
 		mathjax3: {
-			mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+			mathjax: './node_modules/mathjax/es5/tex-chtml.js',
 			tex: {
 				inlineMath: [
 					['$', '$'],
@@ -106,6 +100,24 @@
 			RevealNotes,
 			RevealChart
 		]
+	});
+
+	// Ensure slide number typography overrides stick even if plugins move/replace the element
+	Reveal.on('ready', () => {
+		try {
+			const rn = document.querySelector('.reveal > .slide-number, .reveal .slides ~ .slide-number');
+			if (rn) {
+				rn.style.fontFamily = getComputedStyle(document.documentElement).getPropertyValue('--r-main-font') || 'JetBrains Mono, monospace';
+				rn.style.fontSize = '35px';
+				rn.style.fontWeight = 'bolder';
+				rn.style.paddingLeft = '1cm';
+				rn.style.left = '8px';
+				rn.style.right = 'auto';
+				rn.style.color = 'var(--r-main-color';
+				rn.style.background = 'transparent';
+
+			}
+		} catch { /* ignore */ }
 	});
 
 	// Preload media thumbnails so videos/audio are visible before their fragment plays
@@ -202,5 +214,14 @@
 			});
 		});
 	});
+
+		// Initialize Title-Footer once Reveal is ready (script tag is loaded in presentation.html)
+		Reveal.on('ready', () => {
+			try {
+				if (typeof title_footer !== 'undefined' && title_footer && typeof title_footer.initialize === 'function') {
+					title_footer.initialize(null, 'hsla(0, 0%, 100%, 0.00)');
+				}
+			} catch { /* ignore */ }
+		});
 
 })();

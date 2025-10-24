@@ -1,0 +1,27 @@
+{
+  "name": "phd_thesis_presentation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PhD Thesis presentation powered by Reveal.js and Chart.js with dependencies managed via pnpm",
+  "license": "MIT",
+  "scripts": {
+    "start": "node scripts/serve.cjs"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.4",
+    "@sgratzl/chartjs-chart-boxplot": "^4.4.1",
+    "reveal-onetimer": "github:tpoindex/reveal-onetimer",
+    "reveal.js": "^5.2.1",
+    "reveal.js-title-footer": "github:e-gor/Reveal.js-Title-Footer",
+    "reveal.js-plugins": "^4.6.0",
+    "reveal.js-relativenumber": "^1.0.2",
+    "mathjax": "^3"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "rimraf": "^6.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
