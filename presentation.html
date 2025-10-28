@@ -16,7 +16,7 @@
         <script defer src="./node_modules/reveal.js-plugins/chart/plugin.js"></script>
         <script defer src="./node_modules/reveal.js-title-footer/plugin/title-footer/title-footer.js"></script>
 
-        <script defer src="./scripts/catenary_boxplot.js"></script>
+        <script defer src="./scripts/boxplots.js"></script>
 
         <script defer src="./init.js"></script>
 
@@ -428,17 +428,76 @@
                     <section>
 
                         <h3>
-                            Catenary experiment residuals per cable
+                            Residuals per cable
                         </h3>
 
-                        <div style="width: 100%; height: 75vh; padding-left: 3cm;">
-                            <canvas id="cables-boxplot">
-                            </canvas>
+                        <div style="display: flex; gap: 1rem; width: 100%; height: 75vh; align-items: stretch; padding-left: .5cm;">
+                            <div
+                                style="flex: 0 0 240px; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 2.27cm; height: fit-content; padding-top: .4cm;">
+                                <img src="./media/cable_coaxial.jpg" alt="Cable 1 - Coaxial"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_coaxial_top.jpg" alt="Cable 1 - Coaxial top"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_four_pairs.jpg" alt="Cable 2 - Four pairs"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_four_pairs_top.jpg" alt="Cable 2 - Four pairs top"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_two_pairs.jpg" alt="Cable 3 - Two pairs"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_two_pairs_top.jpg" alt="Cable 3 - Two pairs top"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_floating.jpg" alt="Cable 4 - Floating"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_floating_top.jpg" alt="Cable 4 - Floating top"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_rope.jpg" alt="Cable 5 - Rope"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_rope_top.jpg" alt="Cable 5 - Rope top"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_weighted.jpg" alt="Cable 6 - Weighted"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_weighted_top.jpg" alt="Cable 6 - Weighted top"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_chain.jpg" alt="Cable 7 - Chain"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_chain_top.jpg" alt="Cable 7 - Chain top"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_elastic.jpg" alt="Cable 8 - Elastic"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                                <img src="./media/cable_elastic_top.jpg" alt="Cable 8 - Elastic top"
+                                    style="height: 2.27cm; padding: 0; margin: 0;" />
+                            </div>
+
+                            <div style="flex: 1 1 auto; min-width: 0;">
+                                <canvas id="cables-boxplot"></canvas>
+                            </div>
                         </div>
 
                         <aside class="notes">
                             cable 6: x 4,6474287677 accuracy improvement
                         </aside>
+                    </section>
+
+                    <section>
+                        <h3>
+                            Residual according to parameters for cable 6
+                            <img width="100vh" style="vertical-align: middle;" src="./media/cable_weighted.jpg" />
+                            <img width="100vh" style="vertical-align: middle;" src="./media/cable_weighted_top.jpg" />
+                        </h3>
+                        <div style="width: 100%; height: 67vh; padding-left: 3cm;">
+                            <canvas id="cable-6-boxplot"></canvas>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>
+                            Residual according to parameters for cable 3
+                            <img width="100vh" style="vertical-align: middle;" src="./media/cable_two_pairs.jpg" />
+                            <img width="100vh" style="vertical-align: middle;" src="./media/cable_two_pairs_top.jpg" />
+                        </h3>
+                        <div style="width: 100%; height: 67vh; padding-left: 3cm;">
+                            <canvas id="cable-3-boxplot"></canvas>
+                        </div>
                     </section>
 
                 </section>
