@@ -1,13 +1,6 @@
 (function () {
 
-    const label_callback = (ctx) => {
-        const v = ctx.raw;
-        if (!v) return '';
-        const f = n => (typeof n === 'number' ? n.toFixed(3) : n);
-        return `${ctx.dataset.label}: p1 ${f(v.min)}, q1 ${f(v.q1)}, median ${f(v.median)}, q3 ${f(v.q3)}, p99 ${f(v.max)}`;
-    };
-
-    const boxplot_options = {
+    const options = {
         indexAxis: 'y',
         responsive: true,
         plugins: {
@@ -16,7 +9,14 @@
                 labels: { color: '#000', font: { size: 24 } }
             },
             tooltip: {
-                callbacks: { label: label_callback }
+                callbacks: {
+                    label: (ctx) => {
+                        const v = ctx.raw;
+                        if (!v) return '';
+                        const f = n => (typeof n === 'number' ? n.toFixed(3) : n);
+                        return `${ctx.dataset.label}: p1 ${f(v.min)}, q1 ${f(v.q1)}, median ${f(v.median)}, q3 ${f(v.q3)}, p99 ${f(v.max)}`;
+                    }
+                }
             }
         },
         scales: {
@@ -52,6 +52,13 @@
             border: '#808080ff',
             background: '#80808069',
         }
+    };
+
+    const legend_labels = {
+        vertical: 'vertical',
+        gamma: 'gamma-augmented',
+        theta: 'theta-augmented',
+        theta_gamma: 'fully-augmented'
     };
 
     const cables_labels = ['Cable 1', 'Cable 2', 'Cable 3', 'Cable 4', 'Cable 5', 'Cable 6', 'Cable 7', 'Cable 8'];
@@ -189,13 +196,13 @@
         data: {
             labels: cables_labels,
             datasets: [
-                { label: 'vertical', data: cables_vertical, backgroundColor: colors.vertical.background, borderColor: colors.vertical.border },
-                { label: 'gamma', data: cables_gamma, backgroundColor: colors.gamma.background, borderColor: colors.gamma.border },
-                { label: 'theta', data: cables_theta, backgroundColor: colors.theta.background, borderColor: colors.theta.border },
-                { label: 'theta-gamma', data: cables_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
+                { label: legend_labels.vertical, data: cables_vertical, backgroundColor: colors.vertical.background, borderColor: colors.vertical.border },
+                { label: legend_labels.gamma, data: cables_gamma, backgroundColor: colors.gamma.background, borderColor: colors.gamma.border },
+                { label: legend_labels.theta, data: cables_theta, backgroundColor: colors.theta.background, borderColor: colors.theta.border },
+                { label: legend_labels.theta_gamma, data: cables_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
             ]
         },
-        options: boxplot_options
+        options: options
     });
 
     const cable_6_canvas = document.getElementById('cable-6-boxplot');
@@ -205,13 +212,13 @@
         data: {
             labels: cable_i_labels,
             datasets: [
-                { label: 'v', data: cable_6_vertical, backgroundColor: colors.vertical.background, borderColor: colors.vertical.border },
-                { label: 'gamma', data: cable_6_gamma, backgroundColor: colors.gamma.background, borderColor: colors.gamma.border },
-                { label: 'theta', data: cable_6_theta, backgroundColor: colors.theta.background, borderColor: colors.theta.border },
-                { label: 'theta-gamma', data: cable_6_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
+                { label: legend_labels.vertical, data: cable_6_vertical, backgroundColor: colors.vertical.background, borderColor: colors.vertical.border },
+                { label: legend_labels.gamma, data: cable_6_gamma, backgroundColor: colors.gamma.background, borderColor: colors.gamma.border },
+                { label: legend_labels.theta, data: cable_6_theta, backgroundColor: colors.theta.background, borderColor: colors.theta.border },
+                { label: legend_labels.theta_gamma, data: cable_6_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
             ]
         },
-        options: boxplot_options
+        options: options
     });
 
     const cable_3_canvas = document.getElementById('cable-3-boxplot');
@@ -221,13 +228,13 @@
         data: {
             labels: cable_i_labels,
             datasets: [
-                { label: 'v', data: cable_3_vertical, backgroundColor: colors.vertical.background, borderColor: colors.vertical.border },
-                { label: 'gamma', data: cable_3_gamma, backgroundColor: colors.gamma.background, borderColor: colors.gamma.border },
-                { label: 'theta', data: cable_3_theta, backgroundColor: colors.theta.background, borderColor: colors.theta.border },
-                { label: 'theta-gamma', data: cable_3_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
+                { label: legend_labels.vertical, data: cable_3_vertical, backgroundColor: colors.vertical.background, borderColor: colors.vertical.border },
+                { label: legend_labels.gamma, data: cable_3_gamma, backgroundColor: colors.gamma.background, borderColor: colors.gamma.border },
+                { label: legend_labels.theta, data: cable_3_theta, backgroundColor: colors.theta.background, borderColor: colors.theta.border },
+                { label: legend_labels.theta_gamma, data: cable_3_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
             ]
         },
-        options: boxplot_options
+        options: options
     });
 
 })();
