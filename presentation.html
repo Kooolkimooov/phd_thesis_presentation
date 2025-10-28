@@ -10,19 +10,19 @@
 
         <script defer src="./node_modules/reveal.js/dist/reveal.js"></script>
         <script defer src="./node_modules/chart.js/dist/chart.umd.min.js"></script>
+        <script defer src="./node_modules/@sgratzl/chartjs-chart-boxplot/build/index.umd.js"></script>
         <script defer src="./node_modules/reveal.js/plugin/math/math.js"></script>
         <script defer src="./node_modules/reveal.js/plugin/notes/notes.js"></script>
         <script defer src="./node_modules/reveal.js-plugins/chart/plugin.js"></script>
         <script defer src="./node_modules/reveal.js-title-footer/plugin/title-footer/title-footer.js"></script>
-        
+
+        <script defer src="./scripts/catenary_boxplot.js"></script>
+
         <script defer src="./init.js"></script>
 
-        <script defer src="./node_modules/revealjs-animated/dist/revealjs-animated.js"></script>
-
-    <link rel="stylesheet" href="./node_modules/reveal.js/dist/reveal.css">
-    <link rel="stylesheet" href="./node_modules/reveal.js-title-footer/plugin/title-footer/title-footer.css">
-    <!-- Local JetBrains Mono font via Fontsource -->
-    <link rel="stylesheet" href="./node_modules/@fontsource/jetbrains-mono/index.css">
+        <link rel="stylesheet" href="./node_modules/reveal.js/dist/reveal.css">
+        <link rel="stylesheet" href="./node_modules/reveal.js-title-footer/plugin/title-footer/title-footer.css">
+        <link rel="stylesheet" href="./node_modules/@fontsource/jetbrains-mono/index.css">
         <link rel="stylesheet" href="./theme.css" id="theme">
     </head>
 
@@ -426,31 +426,19 @@
                     </section>
 
                     <section>
+
                         <h3>
-                            test
+                            Catenary experiment residuals per cable
                         </h3>
-                        <div class="chart-container" style="position: relative; width: 100%; height: 60vh;">
-                            <canvas data-chart="bar" style="width: 100%; height: 100%; display: block;">
-                                <!--
-{
-    "data": {
-        "labels": ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        "datasets": [
-            {
-                "label": "# of Votes",
-                "data": [12, 19, 3, 5, 2, 3]
-            }
-        ]
-    },
-    "options": {
-        "responsive": true,
-        "maintainAspectRatio": false,
-        "scales": { "y": { "beginAtZero": true } }
-    }
-}
-                                -->
+
+                        <div style="width: 100%; height: 75vh; padding-left: 3cm;">
+                            <canvas id="cables-boxplot">
                             </canvas>
                         </div>
+
+                        <aside class="notes">
+                            cable 6: x 4,6474287677 accuracy improvement
+                        </aside>
                     </section>
 
                 </section>

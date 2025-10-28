@@ -1,6 +1,8 @@
 
 (async function () {
 
+	Chart.defaults.font.family = 'JetBrains Mono, monospace';
+
 	async function loadMacros(path) {
 		try {
 			const response = await fetch(path);
