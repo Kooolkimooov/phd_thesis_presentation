@@ -101,7 +101,7 @@
 				rn.style.paddingLeft = '1cm';
 				rn.style.left = '8px';
 				rn.style.right = 'auto';
-				rn.style.color = 'var(--r-main-color';
+				rn.style.color = 'var(--r-main-color)';
 				rn.style.background = 'transparent';
 
 			}
