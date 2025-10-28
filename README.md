@@ -4,15 +4,8 @@ This repository hosts a Reveal.js presentation using a variety of plugins.
 
 ## Prerequisites
 
-- Node.js LTS (>= 18).
-- pnpm package manager (recommended):
-
-
-
-```
-winget install OpenJS.NodeJS.LTS
-npm i -g pnpm
-```
+- Node.js LTS (>= 18)
+- pnpm package manager
 
 ## Install dependencies
 
@@ -22,9 +15,7 @@ From the repository root:
 pnpm install
 ```
 
-This installs all runtime dependencies.
-
-And a few dev tools for convenience.
+This installs all runtime dependencies and a few dev tools for convenience.
 
 ## Run a local web server (optional)
 
