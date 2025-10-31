@@ -683,7 +683,7 @@
 
                         <div class="fragment fade-in" style="display:flex; gap:1cm;">
 
-                            <div style="flex:1 1 45%;">
+                            <div class="fragment fade-in" style="flex:1 1 45%;">
 
                                 <p style="text-align:left;">
                                     The forces are described by:
@@ -733,7 +733,10 @@
                             </div>
 
                             <div style="flex:1 1 45%;">
-                                <p style="text-align:justify;">
+
+                                <h4>Definition</h4>
+
+                                <p style="text-align:left;">
                                     Let the state and input vectors of a robot chain of size $n$ be defined as:
                                 </p>
                                 <p><!--noformat-->
@@ -766,8 +769,8 @@
 
                         <p><!--noformat-->
                             \begin{align}
-                                \ldvect{v}{k+1} = - \lambda \lrumatr{L}{\dagger} \left(
-                                \ldvect{s}{k} - \luvect{s}{\text{target}}
+                                \ldvect{v}{i+1} = - \lambda \lrumatr{L}{\dagger} \left(
+                                \ldvect{s}{i+1} - \luvect{s}{\text{target}}
                                 \right)
                                 \end{align}
                         </p><!--noformat-->
@@ -780,6 +783,12 @@
                                 \ldvect{s}{i(i+1)} = \left[\frac{\ldscal{H}{i(i+1)}}{\ldscal{H}{\text{max}}}, \sin{\scal{\alpha}}, \frac{\ldscal{\Delta H}{i(i+1)} + \ldscal{\Delta H}{\text{max}}}{2\ldscal{\Delta H}{\text{max}}}\right]
                             \end{align}
                         </p><!--noformat-->
+
+                            <span class="fragment fade-in">
+                                <p class="fragment highlight-red" style="text-align: left;">
+                                    Robot $i+1$ has no consideration for robots other than its leader: robot $i$
+                                </p>
+                            </span>
 
                     </section>
 
