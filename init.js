@@ -1,7 +1,7 @@
 
 (async function () {
 
-	Chart.defaults.font.family = 'JetBrains Mono, monospace';
+	Chart.defaults.font.family = getComputedStyle(document.documentElement).getPropertyValue('--r-main-font');
 
 	async function loadMacros(path) {
 		try {
