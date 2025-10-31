@@ -798,6 +798,70 @@
                             Path planning
                         </h3>
 
+                        <p style="text-align: left;">
+                            The optimal path is:
+                        </p>
+
+                        <p><!--noformat-->
+                            \begin{align}
+                                \vect{p} = \argmin{\lures{h}{\top} \matr{P} \res{h}
+                                + \frac{1}{\mpch{}}\sum_{k=0}^{\mpch{}-1}{\lures{k}{\top} \matr{Q} \res{k}  + o\left(\ldvect{x}{k}, \ldvect{u}{k}\right)}}
+                            \end{align}
+                        </p><!--noformat-->
+
+                        <div class="fragment fade-in" data-fragment-index="1" style="position: absolute;">
+                            <div class="fragment fade-out" data-fragment-index="5" style="position: absolute;">
+
+                                <p style="text-align: left;">
+                                    With:
+                                </p>
+                                <ul style="text-align: left; white-space: nowrap;">
+                                    <li class="fragment fade-in" data-fragment-index="1">
+                                        $\vect{p}=\left(\ldvect{x}{0}, \dots,\ldvect{x}{n}\right)$
+                                    </li>
+                                    <li class="fragment fade-in" data-fragment-index="2">
+                                        $\res{k} = \ldvect{x}{k}-\llvect{x}{\text{target}}{k}$ the error at step $k$
+                                    </li>
+                                    <li class="fragment fade-in" data-fragment-index="3">
+                                        $\matr{P}$ and $\matr{Q}$ weighting matrices
+                                    </li>
+                                    <li class="fragment fade-in" data-fragment-index="4">
+                                        $o(\ldvect{x}{k}, \ldvect{u}{k})$ an objective function
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                        <div class="fragment fade-in" data-fragment-index="5" style="position: absolute;">
+                            <p style="text-align: left;">
+                                Considering constraints on:
+                            </p>
+                            <ul style="text-align: left;">
+                                <li>
+                                    Cable's distance to the seabed and the surface
+                                </li>
+                                <li class="fragment fade-in" data-fragment-index="6">
+                                    Inter-robot distance
+                                </li>
+                                <li class="fragment fade-in" data-fragment-index="7">
+                                    Robot's speed
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <p class="fragment fade-in-then-out"
+                            style="position: absolute; padding-top: 9cm; left: 50%; transform: translateX(-50%); white-space: nowrap;"
+                            data-fragment-index="8">
+                            Path is tracked with a simple controller
+                        </p>
+                        <p class="fragment fade-in"
+                            style="position: absolute; padding-top: 9cm; left: 50%; transform: translateX(-50%); white-space: nowrap;"
+                            data-fragment-index="9">
+                            Path is re-planned using varrying criteria
+                        </p>
+
                     </section>
 
                     <section>
@@ -805,6 +869,120 @@
                         <h3>
                             Model predictive control
                         </h3>
+
+                        <p style="text-align: left;">
+                            The optimal control is:
+                        </p>
+
+                        <p><!--noformat-->
+                            \begin{align}
+                                \vect{u} = \argmin{\lures{h}{\top} \matr{P} \res{h}
+                                + \frac{1}{\mpch{}}\sum_{k=0}^{\mpch{}-1}{\lures{k}{\top} \matr{Q} \res{k}
+                                + \Delta \llvect{u}{\top}{k} \matr{R} \Delta \ldvect{u}{k} + o\left(\ldvect{x}{k}, \ldvect{u}{k}\right)}}
+                            \end{align}
+                        </p><!--noformat-->
+
+                        <div class="fragment fade-in" data-fragment-index="1" style="position: absolute;">
+                            <div class="fragment fade-out" data-fragment-index="6" style="position: absolute;">
+
+                                <p style="text-align: left;">
+                                    With:
+                                </p>
+                                <ul style="text-align: left; white-space: nowrap;">
+                                    <li class="fragment fade-in" data-fragment-index="1">
+                                        $\vect{u}=\left(\ldvect{u}{0}, \dots, \ldvect{u}{h}\right)$
+                                    </li>
+                                    <li class="fragment fade-in" data-fragment-index="2">
+                                        $\res{k} = \ldvect{x}{k}-\llvect{x}{\text{target}}{k}$ the error at step $k$
+                                    </li>
+                                    <li class="fragment fade-in" data-fragment-index="3">
+                                        $\Delta \ldvect{u}{k} = \ldvect{u}{k} - \ldvect{u}{k-1}$ the incremental control
+                                        at step $k$
+                                    </li>
+                                    <li class="fragment fade-in" data-fragment-index="4">
+                                        $\matr{P}$, $\matr{Q}$ and $\matr{R}$ weighting matrices
+                                    </li>
+                                    <li class="fragment fade-in" data-fragment-index="5">
+                                        $o(\ldvect{x}{k}, \ldvect{u}{k})$ an objective function
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                        <div class="fragment fade-in" data-fragment-index="6" style="position: absolute;">
+                            <p style="text-align: left;">
+                                Considering constraints on:
+                            </p>
+                            <ul style="text-align: left;">
+                                <li>
+                                    Cable's distance to the seabed and the surface
+                                </li>
+                                <li class="fragment fade-in">
+                                    Inter-robot distance
+                                </li>
+                                <li class="fragment fade-in">
+                                    Robot's speed
+                                </li>
+                                <li class="fragment fade-in">
+                                    Robot's actuation
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <p class="fragment fade-in" style="padding-top: 9cm;">
+                            $\ldvect{u}{0}$ is used and the problem is solved again
+                        </p>
+
+                    </section>
+
+                    <section>
+
+                        <h3>
+                            Simulation setup
+                        </h3>
+
+                        <div class="fragment fade-in" style="display:flex; gap:1cm;">
+
+                            <div style="flex:1 1 45%">
+                                <img src="media/mpc_simulation_tank.png">
+                            </div>
+
+                            <div style="flex:1 1 45%;">
+
+                                <h4>Scenario</h4>
+
+                                <ul style="text-align: left;">
+                                    <li>
+                                        4 robot chain system
+                                    </li>
+                                    <li class="fragment fade-in">
+                                        Tailored environment and trajectory
+                                    </li>
+                                </ul>
+
+                                <h4 class="fragment fade-in" style="padding-top: 2cm;">
+                                    Runs
+                                </h4>
+
+                                <ul style="text-align: left;">
+                                    <li class="fragment fade-in">Peer-to-peer reactive controller</li>
+                                    <li class="fragment fade-in">
+                                        Path planning
+                                        <ul style="text-align: left; font-size: 90%;">
+                                            <li>Systematic replanning</li>
+                                            <li class="fragment fade-in">Replanning after time or error limit</li>
+                                        </ul>
+                                    </li>
+                                    <li class="fragment fade-in">
+                                        Model predictive control
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
 
                     </section>
 
