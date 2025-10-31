@@ -61,7 +61,7 @@
         theta_gamma: 'fully-augmented'
     };
 
-    const cables_labels = ['Cable 1', 'Cable 2', 'Cable 3', 'Cable 4', 'Cable 5', 'Cable 6', 'Cable 7', 'Cable 8'];
+    const cables_labels = ['Coaxial (1)', 'Four pairs (2)', 'Two pairs (3)', 'Floating (4)', 'Rope (5)', 'Weighted (6)', 'Chain (7)', 'Elastic (8)'];
 
     const cables_vertical = [
         { min: 125.69407530666719, q1: 168.5656267698244, median: 194.23231794580056, q3: 257.59504913402725, max: 388.00982447967783 },
