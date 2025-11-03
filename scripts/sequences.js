@@ -1,6 +1,6 @@
 (function () {
 
-    const parseTable = (source) => {
+    const parse_table = (source) => {
         return source
             .split(/\r?\n/)
             .map(line => line.trim())
@@ -11,14 +11,14 @@
             });
     };
 
-    const loadSeries = async (path) => {
+    const load_series = async (path) => {
         try {
             const response = await fetch(path);
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}`);
             }
             const text = await response.text();
-            return parseTable(text);
+            return parse_table(text);
         } catch (error) {
             console.warn(`Unable to load ${path}:`, error);
             return [];
@@ -125,7 +125,7 @@
         border: { color: '#000' }
     };
 
-    const createBaseOptions = () => ({
+    const get_options = () => ({
         responsive: true,
         maintainAspectRatio: false,
         interaction: { mode: 'index', intersect: false },
@@ -141,8 +141,8 @@
         }
     });
 
-    const createErrorOptions = (x_max, l_pad=10, r_pad=95) => {
-        const options = createBaseOptions();
+    const get_error_options = (x_max, l_pad=10, r_pad=95) => {
+        const options = get_options();
         options.scales = {
             x: { ...x_axis, max: x_max },
             error: { ...error_axis }
@@ -156,8 +156,8 @@
         return options;
     };
 
-    const createSpeedOptions = (x_max) => {
-        const options = createBaseOptions();
+    const get_speed_options = (x_max) => {
+        const options = get_options();
         options.scales = {
             x: { ...x_axis, max: x_max },
             speed: { ...speed_axis },
@@ -194,30 +194,30 @@
             ga_sway_6,
             ta_sway_6,
         ] = await Promise.all([
-            loadSeries(data_files.ve_surge_3),
-            loadSeries(data_files.ge_surge_3),
-            loadSeries(data_files.te_surge_3),
-            loadSeries(data_files.sp_surge_3),
-            loadSeries(data_files.ga_surge_3),
-            loadSeries(data_files.ta_surge_3),
-            loadSeries(data_files.ve_sway_3),
-            loadSeries(data_files.ge_sway_3),
-            loadSeries(data_files.te_sway_3),
-            loadSeries(data_files.sp_sway_3),
-            loadSeries(data_files.ga_sway_3),
-            loadSeries(data_files.ta_sway_3),
-            loadSeries(data_files.ve_surge_6),
-            loadSeries(data_files.ge_surge_6),
-            loadSeries(data_files.te_surge_6),
-            loadSeries(data_files.sp_surge_6),
-            loadSeries(data_files.ga_surge_6),
-            loadSeries(data_files.ta_surge_6),
-            loadSeries(data_files.ve_sway_6),
-            loadSeries(data_files.ge_sway_6),
-            loadSeries(data_files.te_sway_6),
-            loadSeries(data_files.sp_sway_6),
-            loadSeries(data_files.ga_sway_6),
-            loadSeries(data_files.ta_sway_6),
+            load_series(data_files.ve_surge_3),
+            load_series(data_files.ge_surge_3),
+            load_series(data_files.te_surge_3),
+            load_series(data_files.sp_surge_3),
+            load_series(data_files.ga_surge_3),
+            load_series(data_files.ta_surge_3),
+            load_series(data_files.ve_sway_3),
+            load_series(data_files.ge_sway_3),
+            load_series(data_files.te_sway_3),
+            load_series(data_files.sp_sway_3),
+            load_series(data_files.ga_sway_3),
+            load_series(data_files.ta_sway_3),
+            load_series(data_files.ve_surge_6),
+            load_series(data_files.ge_surge_6),
+            load_series(data_files.te_surge_6),
+            load_series(data_files.sp_surge_6),
+            load_series(data_files.ga_surge_6),
+            load_series(data_files.ta_surge_6),
+            load_series(data_files.ve_sway_6),
+            load_series(data_files.ge_sway_6),
+            load_series(data_files.te_sway_6),
+            load_series(data_files.sp_sway_6),
+            load_series(data_files.ga_sway_6),
+            load_series(data_files.ta_sway_6),
         ]);
 
         const charts = [];
@@ -241,7 +241,7 @@
                     )
                 ]
             },
-            options: createErrorOptions(14.2),
+            options: get_error_options(14.2),
         });
 
         charts.push(cable_3_surge_error_chart);
@@ -271,7 +271,7 @@
                     )
                 ]
             },
-            options: createSpeedOptions(14.2),
+            options: get_speed_options(14.2),
         });
 
         charts.push(cable_3_surge_speed_chart);
@@ -295,7 +295,7 @@
                     )
                 ]
             },
-            options: createErrorOptions(15.7),
+            options: get_error_options(15.7),
         });
 
         charts.push(cable_3_sway_error_chart);
@@ -325,7 +325,7 @@
                     )
                 ]
             },
-            options: createSpeedOptions(15.7),
+            options: get_speed_options(15.7),
         });
 
         charts.push(cable_3_sway_speed_chart);
@@ -349,7 +349,7 @@
                     )
                 ]
             },
-            options: createErrorOptions(9.6),
+            options: get_error_options(9.6),
         });
 
         charts.push(cable_6_surge_error_chart);
@@ -379,7 +379,7 @@
                     )
                 ]
             },
-            options: createSpeedOptions(9.6),
+            options: get_speed_options(9.6),
         });
 
         charts.push(cable_6_surge_speed_chart);
@@ -403,7 +403,7 @@
                     )
                 ]
             },
-            options: createErrorOptions(8.8, 10, 110),
+            options: get_error_options(8.8, 10, 110),
         });
 
         charts.push(cable_6_sway_error_chart);
@@ -433,7 +433,7 @@
                     )
                 ]
             },
-            options: createSpeedOptions(8.8),
+            options: get_speed_options(8.8),
         });
 
         charts.push(cable_6_sway_speed_chart);

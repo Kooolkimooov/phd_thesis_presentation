@@ -1,6 +1,6 @@
 (function () {
 
-    const options = {
+    const get_options = (x_min, x_max) => ({
         indexAxis: 'y',
         responsive: true,
         plugins: {
@@ -21,8 +21,9 @@
         },
         scales: {
             x: {
+                min: x_min,
+                max: x_max,
                 type: 'logarithmic',
-                min: 6,
                 ticks: { color: '#000', font: { size: 20 } },
                 title: { display: true, text: 'residual / mm', color: '#000', font: { size: 20 } },
                 border: { color: '#000' }
@@ -33,7 +34,7 @@
                 border: { color: '#000' }
             }
         }
-    };
+    });
 
     const colors = {
         vertical: {
@@ -48,6 +49,10 @@
             border: '#00ff00ff',
             background: '#00ff0069',
         },
+        dynamic: {
+            border: '#ff8c00ff',
+            background: '#ff8c0069',
+        },
         theta_gamma: {
             border: '#808080ff',
             background: '#80808069',
@@ -58,6 +63,7 @@
         vertical: 'vertical',
         gamma: 'γ-augmented',
         theta: 'θ-augmented',
+        dynamic: 'finite difference',
         theta_gamma: 'θγ-augmented'
     };
 
@@ -152,6 +158,14 @@
         { min: 7.261272463463021, q1: 7.6576470037987825, median: 8.187514433376236, q3: 10.303214504463174, max: 20.31487565593218 }
     ];
 
+    const cable_6_diff_dynamic = [
+        { min: 0.13, q1: 6.95, median: 12.02, q3: 14.94, max: 21.34 },
+        { min: 0.47, q1: 5.85, median: 12.38, q3: 15.8, max: 22.59 },
+        { min: 0.08, q1: 3.78, median: 12.24, q3: 15.63, max: 22.1 },
+        { min: 0.09, q1: 3.86, median: 10.62, q3: 15.4, max: 21.85 },
+        { min: 0.01, q1: 8.16, median: 12.91, q3: 16.5, max: 24.26 },
+        { min: 0.08, q1: 3.96, median: 9.32, q3: 13.31, max: 18.98 }
+    ];
 
     const cable_3_vertical = [
         { min: 23.606519809819666, q1: 39.85189128180079, median: 74.22095239903128, q3: 174.6782465369942, max: 317.87576378587084 },
@@ -202,7 +216,7 @@
                 { label: legend_labels.theta_gamma, data: cables_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
             ]
         },
-        options: options
+        options: get_options(6, 600)
     });
 
     const cable_6_canvas = document.getElementById('cable-6-boxplot');
@@ -218,7 +232,7 @@
                 { label: legend_labels.theta_gamma, data: cable_6_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
             ]
         },
-        options: options
+        options: get_options(6, 200)
     });
 
     const cable_3_canvas = document.getElementById('cable-3-boxplot');
@@ -234,7 +248,22 @@
                 { label: legend_labels.theta_gamma, data: cable_3_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
             ]
         },
-        options: options
+        options: get_options(19, 500)
     });
+
+    const cable_6_diff_canvas = document.getElementById('cable-6-boxplot-diff');
+
+    new Chart(cable_6_diff_canvas, {
+        type: 'boxplot',
+        data: {
+            labels: cable_i_labels,
+            datasets: [
+                { label: legend_labels.dynamic, data: cable_6_diff_dynamic, backgroundColor: colors.dynamic.background, borderColor: colors.dynamic.border },
+                { label: legend_labels.theta_gamma, data: cable_6_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
+            ]
+        },
+        options: get_options(0.009, 70)
+    });
+
 
 })();
