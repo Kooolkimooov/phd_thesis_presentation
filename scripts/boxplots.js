@@ -56,9 +56,9 @@
 
     const legend_labels = {
         vertical: 'vertical',
-        gamma: 'gamma-augmented',
-        theta: 'theta-augmented',
-        theta_gamma: 'fully-augmented'
+        gamma: 'γ-augmented',
+        theta: 'θ-augmented',
+        theta_gamma: 'θγ-augmented'
     };
 
     const cables_labels = ['Coaxial (1)', 'Four pairs (2)', 'Two pairs (3)', 'Floating (4)', 'Rope (5)', 'Weighted (6)', 'Chain (7)', 'Elastic (8)'];
