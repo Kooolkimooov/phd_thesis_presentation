@@ -478,21 +478,23 @@
                     </section>
 
                     <section>
+
                         <h3>
                             Residual according to parameters for the weighted cable (6)
                         </h3>
+
                         <div style="display: flex; gap: 1rem; width: 100%; height: 67vh; align-items: stretch;">
                             <div style="flex: 1 1 auto; min-width: 0;">
                                 <canvas id="cable-6-boxplot"></canvas>
                             </div>
                             <div
                                 style="flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-start;">
-                                <img src="./media/cable_weighted.jpg"
-                                    style="height: 32vh; padding: 0; margin: 0;" />
+                                <img src="./media/cable_weighted.jpg" style="height: 32vh; padding: 0; margin: 0;" />
                                 <img src="./media/cable_weighted_top.jpg"
                                     style="height: 32vh; padding: 0; margin: 0;" />
                             </div>
                         </div>
+
                     </section>
 
                     <section>
@@ -507,8 +509,7 @@
                             </div>
                             <div
                                 style="flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-start;">
-                                <img src="./media/cable_two_pairs.jpg"
-                                    style="height: 32vh; padding: 0; margin: 0;" />
+                                <img src="./media/cable_two_pairs.jpg" style="height: 32vh; padding: 0; margin: 0;" />
                                 <img src="./media/cable_two_pairs_top.jpg"
                                     style="height: 32vh; padding: 0; margin: 0;" />
                             </div>
@@ -519,14 +520,14 @@
                     <section>
 
                         <h3>
-                            Residual for a single sequence of surge motion for the weighted cable (6)
+                            Single sequence, surge motion, weighted cable (6)
                         </h3>
 
-                        <div class="surge-sequence-chart">
-                            <div class="surge-sequence-panel">
+                        <div class="sequence-chart">
+                            <div class="sequence-panel">
                                 <canvas id="cable-6-surge-error" role="img"></canvas>
                             </div>
-                            <div class="surge-sequence-panel">
+                            <div class="sequence-panel">
                                 <canvas id="cable-6-surge-speed" role="img"></canvas>
                             </div>
                         </div>
@@ -536,15 +537,49 @@
                     <section>
 
                         <h3>
-                            Residual for a single sequence of surge motion for the two pairs cable (3)
+                            Single sequence, sway motion, weighted cable (6)
                         </h3>
 
-                        <div class="surge-sequence-chart">
-                            <div class="surge-sequence-panel">
+                        <div class="sequence-chart">
+                            <div class="sequence-panel">
+                                <canvas id="cable-6-sway-error" role="img"></canvas>
+                            </div>
+                            <div class="sequence-panel">
+                                <canvas id="cable-6-sway-speed" role="img"></canvas>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <section>
+
+                        <h3>
+                            Single sequence, surge motion, two pairs cable (3)
+                        </h3>
+
+                        <div class="sequence-chart">
+                            <div class="sequence-panel">
                                 <canvas id="cable-3-surge-error" role="img"></canvas>
                             </div>
-                            <div class="surge-sequence-panel">
+                            <div class="sequence-panel">
                                 <canvas id="cable-3-surge-speed" role="img"></canvas>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <section>
+
+                        <h3>
+                            Single sequence, sway motion, two pairs cable (3)
+                        </h3>
+
+                        <div class="sequence-chart">
+                            <div class="sequence-panel">
+                                <canvas id="cable-3-sway-error" role="img"></canvas>
+                            </div>
+                            <div class="sequence-panel">
+                                <canvas id="cable-3-sway-speed" role="img"></canvas>
                             </div>
                         </div>
 
