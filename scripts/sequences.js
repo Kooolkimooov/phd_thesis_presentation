@@ -1,5 +1,7 @@
 (function () {
 
+    const { colors, legend_labels } = window.utils;
+
     const parse_table = (source) => {
         return source
             .split(/\r?\n/)
@@ -25,32 +27,12 @@
         }
     };
 
-    const colors = {
-        font: '#000',
-        vertical: '#0000ffff',
-        gamma: '#ff0000ff',
-        theta: '#00ff00ff',
-        theta_gamma: '#808080ff',
-        speed: '#000000ff',
-        speed_command: '#000000ff',
-    };
 
     const line_style = {
         borderWidth: 4,
         tension: 0.15,
         pointRadius: 0
     }
-
-    const legend_labels = {
-        vertical: 'vertical',
-        gamma: 'γ-augmented',
-        theta: 'θ-augmented',
-        theta_gamma: 'θγ-augmented',
-        speed: 'robot speed',
-        speed_command: 'speed command',
-        gamma_angle: 'angle γ',
-        theta_angle: 'angle θ'
-    };
 
     const data_files = {
         ve_surge_3: './data/e_vertical_L_dynamique3x200dis2_0122.txt',
@@ -141,7 +123,7 @@
         }
     });
 
-    const get_error_options = (x_max, l_pad=10, r_pad=95) => {
+    const get_error_options = (x_max, l_pad = 10, r_pad = 95) => {
         const options = get_options();
         options.scales = {
             x: { ...x_axis, max: x_max },
@@ -228,15 +210,15 @@
             data: {
                 datasets: [
                     Object.assign(
-                        { label: legend_labels.vertical, data: ve_surge_3, borderColor: colors.vertical, yAxisID: 'error' },
+                        { label: legend_labels.vertical, data: ve_surge_3, borderColor: colors.vertical.border, yAxisID: 'error' },
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.gamma, data: ge_surge_3, borderColor: colors.gamma, yAxisID: 'error' },
+                        { label: legend_labels.gamma, data: ge_surge_3, borderColor: colors.gamma.border, yAxisID: 'error', hidden: true },
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.theta_gamma, data: te_surge_3, borderColor: colors.theta_gamma, yAxisID: 'error' },
+                        { label: legend_labels.theta_gamma, data: te_surge_3, borderColor: colors.theta_gamma.border, yAxisID: 'error' },
                         line_style
                     )
                 ]
@@ -245,7 +227,6 @@
         });
 
         charts.push(cable_3_surge_error_chart);
-
 
         const cable_3_surge_speed_canvas = document.getElementById('cable-3-surge-speed');
         const cable_3_surge_speed_chart = new Chart(cable_3_surge_speed_canvas, {
@@ -262,11 +243,11 @@
                         { borderDash: [10, 8], stepped: true },
                     ),
                     Object.assign(
-                        { label: legend_labels.gamma_angle, data: ga_surge_3, borderColor: colors.gamma, yAxisID: 'angle' },
+                        { label: legend_labels.gamma_angle, data: ga_surge_3, borderColor: colors.gamma.border, yAxisID: 'angle' },
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.theta_angle, data: ta_surge_3, borderColor: colors.theta, yAxisID: 'angle' },
+                        { label: legend_labels.theta_angle, data: ta_surge_3, borderColor: colors.theta.border, yAxisID: 'angle' },
                         line_style
                     )
                 ]
@@ -282,15 +263,15 @@
             data: {
                 datasets: [
                     Object.assign(
-                        { label: legend_labels.vertical, data: ve_sway_3, borderColor: colors.vertical, yAxisID: 'error' },
+                        { label: legend_labels.vertical, data: ve_sway_3, borderColor: colors.vertical.border, yAxisID: 'error' },
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.gamma, data: ge_sway_3, borderColor: colors.gamma, yAxisID: 'error' },
+                        { label: legend_labels.gamma, data: ge_sway_3, borderColor: colors.gamma.border, yAxisID: 'error', hidden: true },
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.theta_gamma, data: te_sway_3, borderColor: colors.theta_gamma, yAxisID: 'error' },
+                        { label: legend_labels.theta_gamma, data: te_sway_3, borderColor: colors.theta_gamma.border, yAxisID: 'error' },
                         line_style
                     )
                 ]
@@ -316,11 +297,11 @@
                         { borderDash: [10, 8], stepped: true },
                     ),
                     Object.assign(
-                        { label: legend_labels.gamma_angle, data: ga_sway_3, borderColor: colors.gamma, yAxisID: 'angle' },
+                        { label: legend_labels.gamma_angle, data: ga_sway_3, borderColor: colors.gamma.border, yAxisID: 'angle' },
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.theta_angle, data: ta_sway_3, borderColor: colors.theta, yAxisID: 'angle' },
+                        { label: legend_labels.theta_angle, data: ta_sway_3, borderColor: colors.theta.border, yAxisID: 'angle' },
                         line_style
                     )
                 ]
@@ -336,15 +317,15 @@
             data: {
                 datasets: [
                     Object.assign(
-                        { label: legend_labels.vertical, data: ve_surge_6, borderColor: colors.vertical, yAxisID: 'error' },
+                        { label: legend_labels.vertical, data: ve_surge_6, borderColor: colors.vertical.border, yAxisID: 'error' },
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.gamma, data: ge_surge_6, borderColor: colors.gamma, yAxisID: 'error' },
+                        { label: legend_labels.gamma, data: ge_surge_6, borderColor: colors.gamma.border, yAxisID: 'error', hidden: true },
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.theta_gamma, data: te_surge_6, borderColor: colors.theta_gamma, yAxisID: 'error' },
+                        { label: legend_labels.theta_gamma, data: te_surge_6, borderColor: colors.theta_gamma.border, yAxisID: 'error' },
                         line_style
                     )
                 ]
@@ -370,11 +351,11 @@
                         { borderDash: [10, 8], stepped: true },
                     ),
                     Object.assign(
-                        { label: legend_labels.gamma_angle, data: ga_surge_6, borderColor: colors.gamma, yAxisID: 'angle' },
+                        { label: legend_labels.gamma_angle, data: ga_surge_6, borderColor: colors.gamma.border, yAxisID: 'angle' },
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.theta_angle, data: ta_surge_6, borderColor: colors.theta, yAxisID: 'angle' },
+                        { label: legend_labels.theta_angle, data: ta_surge_6, borderColor: colors.theta.border, yAxisID: 'angle' },
                         line_style
                     )
                 ]
@@ -390,15 +371,15 @@
             data: {
                 datasets: [
                     Object.assign(
-                        { label: legend_labels.vertical, data: ve_sway_6, borderColor: colors.vertical, yAxisID: 'error' },
+                        { label: legend_labels.vertical, data: ve_sway_6, borderColor: colors.vertical.border, yAxisID: 'error' },
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.gamma, data: ge_sway_6, borderColor: colors.gamma, yAxisID: 'error' },
+                        { label: legend_labels.gamma, data: ge_sway_6, borderColor: colors.gamma.border, yAxisID: 'error', hidden: true },
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.theta_gamma, data: te_sway_6, borderColor: colors.theta_gamma, yAxisID: 'error' },
+                        { label: legend_labels.theta_gamma, data: te_sway_6, borderColor: colors.theta_gamma.border, yAxisID: 'error' },
                         line_style
                     )
                 ]
@@ -424,11 +405,11 @@
                         { borderDash: [10, 8], stepped: true },
                     ),
                     Object.assign(
-                        { label: legend_labels.gamma_angle, data: ga_sway_6, borderColor: colors.gamma, yAxisID: 'angle' },
+                        { label: legend_labels.gamma_angle, data: ga_sway_6, borderColor: colors.gamma.border, yAxisID: 'angle' },
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.theta_angle, data: ta_sway_6, borderColor: colors.theta, yAxisID: 'angle' },
+                        { label: legend_labels.theta_angle, data: ta_sway_6, borderColor: colors.theta.border, yAxisID: 'angle' },
                         line_style
                     )
                 ]

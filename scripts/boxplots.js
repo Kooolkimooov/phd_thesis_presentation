@@ -1,5 +1,7 @@
 (function () {
 
+    const { colors, legend_labels } = window.utils;
+
     const get_options = (x_min, x_max) => ({
         indexAxis: 'y',
         responsive: true,
@@ -36,36 +38,6 @@
         }
     });
 
-    const colors = {
-        vertical: {
-            border: '#0000ffff',
-            background: '#0000ff69',
-        },
-        gamma: {
-            border: '#ff0000ff',
-            background: '#ff000069',
-        },
-        theta: {
-            border: '#00ff00ff',
-            background: '#00ff0069',
-        },
-        dynamic: {
-            border: '#ff8c00ff',
-            background: '#ff8c0069',
-        },
-        theta_gamma: {
-            border: '#808080ff',
-            background: '#80808069',
-        }
-    };
-
-    const legend_labels = {
-        vertical: 'vertical',
-        gamma: 'γ-augmented',
-        theta: 'θ-augmented',
-        dynamic: 'finite difference',
-        theta_gamma: 'θγ-augmented'
-    };
 
     const cables_labels = ['Coaxial (1)', 'Four pairs (2)', 'Two pairs (3)', 'Floating (4)', 'Rope (5)', 'Weighted (6)', 'Chain (7)', 'Elastic (8)'];
 
@@ -211,8 +183,8 @@
             labels: cables_labels,
             datasets: [
                 { label: legend_labels.vertical, data: cables_vertical, backgroundColor: colors.vertical.background, borderColor: colors.vertical.border },
-                { label: legend_labels.gamma, data: cables_gamma, backgroundColor: colors.gamma.background, borderColor: colors.gamma.border },
-                { label: legend_labels.theta, data: cables_theta, backgroundColor: colors.theta.background, borderColor: colors.theta.border },
+                { label: legend_labels.gamma, data: cables_gamma, backgroundColor: colors.gamma.background, borderColor: colors.gamma.border, hidden: true },
+                { label: legend_labels.theta, data: cables_theta, backgroundColor: colors.theta.background, borderColor: colors.theta.border, hidden: true },
                 { label: legend_labels.theta_gamma, data: cables_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
             ]
         },
@@ -227,8 +199,8 @@
             labels: cable_i_labels,
             datasets: [
                 { label: legend_labels.vertical, data: cable_6_vertical, backgroundColor: colors.vertical.background, borderColor: colors.vertical.border },
-                { label: legend_labels.gamma, data: cable_6_gamma, backgroundColor: colors.gamma.background, borderColor: colors.gamma.border },
-                { label: legend_labels.theta, data: cable_6_theta, backgroundColor: colors.theta.background, borderColor: colors.theta.border },
+                { label: legend_labels.gamma, data: cable_6_gamma, backgroundColor: colors.gamma.background, borderColor: colors.gamma.border, hidden: true },
+                { label: legend_labels.theta, data: cable_6_theta, backgroundColor: colors.theta.background, borderColor: colors.theta.border, hidden: true },
                 { label: legend_labels.theta_gamma, data: cable_6_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
             ]
         },
@@ -243,8 +215,8 @@
             labels: cable_i_labels,
             datasets: [
                 { label: legend_labels.vertical, data: cable_3_vertical, backgroundColor: colors.vertical.background, borderColor: colors.vertical.border },
-                { label: legend_labels.gamma, data: cable_3_gamma, backgroundColor: colors.gamma.background, borderColor: colors.gamma.border },
-                { label: legend_labels.theta, data: cable_3_theta, backgroundColor: colors.theta.background, borderColor: colors.theta.border },
+                { label: legend_labels.gamma, data: cable_3_gamma, backgroundColor: colors.gamma.background, borderColor: colors.gamma.border, hidden: true },
+                { label: legend_labels.theta, data: cable_3_theta, backgroundColor: colors.theta.background, borderColor: colors.theta.border, hidden: true },
                 { label: legend_labels.theta_gamma, data: cable_3_theta_gamma, backgroundColor: colors.theta_gamma.background, borderColor: colors.theta_gamma.border }
             ]
         },
