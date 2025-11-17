@@ -37,25 +37,29 @@
     const data_files = {
         ve_surge_3: './data/e_vertical_L_dynamique3x200dis2_0122.txt',
         ge_surge_3: './data/e_gamma_L_dynamique3x200dis2_0122.txt',
-        te_surge_3: './data/e_theta_gamma_L_dynamique3x200dis2_0122.txt',
+        te_surge_3: './data/e_theta_L_dynamique3x200dis2_0122.txt',
+        fe_surge_3: './data/e_theta_gamma_L_dynamique3x200dis2_0122.txt',
         sp_surge_3: './data/speed_L_dynamique3x200dis2_0122.txt',
         ga_surge_3: './data/gamma_L_dynamique3x200dis2_0122.txt',
         ta_surge_3: './data/theta_L_dynamique3x200dis2_0122.txt',
         ve_sway_3: './data/e_vertical_L_dynamique3y200dis2_0113.txt',
         ge_sway_3: './data/e_gamma_L_dynamique3y200dis2_0113.txt',
-        te_sway_3: './data/e_theta_gamma_L_dynamique3y200dis2_0113.txt',
+        te_sway_3: './data/e_theta_L_dynamique3y200dis2_0113.txt',
+        fe_sway_3: './data/e_theta_gamma_L_dynamique3y200dis2_0113.txt',
         sp_sway_3: './data/speed_L_dynamique3y200dis2_0113.txt',
         ga_sway_3: './data/gamma_L_dynamique3y200dis2_0113.txt',
         ta_sway_3: './data/theta_L_dynamique3y200dis2_0113.txt',
         ve_surge_6: './data/e_vertical_L_dynamique6x200dis2_0031.txt',
         ge_surge_6: './data/e_gamma_L_dynamique6x200dis2_0031.txt',
-        te_surge_6: './data/e_theta_gamma_L_dynamique6x200dis2_0031.txt',
+        te_surge_6: './data/e_theta_L_dynamique6x200dis2_0031.txt',
+        fe_surge_6: './data/e_theta_gamma_L_dynamique6x200dis2_0031.txt',
         sp_surge_6: './data/speed_L_dynamique6x200dis2_0031.txt',
         ga_surge_6: './data/gamma_L_dynamique6x200dis2_0031.txt',
         ta_surge_6: './data/theta_L_dynamique6x200dis2_0031.txt',
         ve_sway_6: './data/e_vertical_L_dynamique6y200dis2_0028.txt',
         ge_sway_6: './data/e_gamma_L_dynamique6y200dis2_0028.txt',
-        te_sway_6: './data/e_theta_gamma_L_dynamique6y200dis2_0028.txt',
+        te_sway_6: './data/e_theta_L_dynamique6y200dis2_0028.txt',
+        fe_sway_6: './data/e_theta_gamma_L_dynamique6y200dis2_0028.txt',
         sp_sway_6: './data/speed_L_dynamique6y200dis2_0028.txt',
         ga_sway_6: './data/gamma_L_dynamique6y200dis2_0028.txt',
         ta_sway_6: './data/theta_L_dynamique6y200dis2_0028.txt',
@@ -154,24 +158,28 @@
             ve_surge_3,
             ge_surge_3,
             te_surge_3,
+            fe_surge_3,
             sp_surge_3,
             ga_surge_3,
             ta_surge_3,
             ve_sway_3,
             ge_sway_3,
             te_sway_3,
+            fe_sway_3,
             sp_sway_3,
             ga_sway_3,
             ta_sway_3,
             ve_surge_6,
             ge_surge_6,
             te_surge_6,
+            fe_surge_6,
             sp_surge_6,
             ga_surge_6,
             ta_surge_6,
             ve_sway_6,
             ge_sway_6,
             te_sway_6,
+            fe_sway_6,
             sp_sway_6,
             ga_sway_6,
             ta_sway_6,
@@ -179,24 +187,28 @@
             load_series(data_files.ve_surge_3),
             load_series(data_files.ge_surge_3),
             load_series(data_files.te_surge_3),
+            load_series(data_files.fe_surge_3),
             load_series(data_files.sp_surge_3),
             load_series(data_files.ga_surge_3),
             load_series(data_files.ta_surge_3),
             load_series(data_files.ve_sway_3),
             load_series(data_files.ge_sway_3),
             load_series(data_files.te_sway_3),
+            load_series(data_files.fe_sway_3),
             load_series(data_files.sp_sway_3),
             load_series(data_files.ga_sway_3),
             load_series(data_files.ta_sway_3),
             load_series(data_files.ve_surge_6),
             load_series(data_files.ge_surge_6),
             load_series(data_files.te_surge_6),
+            load_series(data_files.fe_surge_6),
             load_series(data_files.sp_surge_6),
             load_series(data_files.ga_surge_6),
             load_series(data_files.ta_surge_6),
             load_series(data_files.ve_sway_6),
             load_series(data_files.ge_sway_6),
             load_series(data_files.te_sway_6),
+            load_series(data_files.fe_sway_6),
             load_series(data_files.sp_sway_6),
             load_series(data_files.ga_sway_6),
             load_series(data_files.ta_sway_6),
@@ -218,7 +230,11 @@
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.theta_gamma, data: te_surge_3, borderColor: colors.theta_gamma.border, yAxisID: 'error' },
+                        { label: legend_labels.theta, data: te_surge_3, borderColor: colors.theta.border, yAxisID: 'error', hidden: true },
+                        line_style
+                    ),
+                    Object.assign(
+                        { label: legend_labels.theta_gamma, data: fe_surge_3, borderColor: colors.theta_gamma.border, yAxisID: 'error' },
                         line_style
                     )
                 ]
@@ -271,7 +287,11 @@
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.theta_gamma, data: te_sway_3, borderColor: colors.theta_gamma.border, yAxisID: 'error' },
+                        { label: legend_labels.theta, data: te_sway_3, borderColor: colors.theta.border, yAxisID: 'error', hidden: true },
+                        line_style
+                    ),
+                    Object.assign(
+                        { label: legend_labels.theta_gamma, data: fe_sway_3, borderColor: colors.theta_gamma.border, yAxisID: 'error' },
                         line_style
                     )
                 ]
@@ -325,7 +345,11 @@
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.theta_gamma, data: te_surge_6, borderColor: colors.theta_gamma.border, yAxisID: 'error' },
+                        { label: legend_labels.theta, data: te_surge_6, borderColor: colors.theta.border, yAxisID: 'error', hidden: true },
+                        line_style
+                    ),
+                    Object.assign(
+                        { label: legend_labels.theta_gamma, data: fe_surge_6, borderColor: colors.theta_gamma.border, yAxisID: 'error' },
                         line_style
                     )
                 ]
@@ -379,7 +403,11 @@
                         line_style
                     ),
                     Object.assign(
-                        { label: legend_labels.theta_gamma, data: te_sway_6, borderColor: colors.theta_gamma.border, yAxisID: 'error' },
+                        { label: legend_labels.theta, data: te_sway_6, borderColor: colors.theta.border, yAxisID: 'error', hidden: true },
+                        line_style
+                    ),
+                    Object.assign(
+                        { label: legend_labels.theta_gamma, data: fe_sway_6, borderColor: colors.theta_gamma.border, yAxisID: 'error' },
                         line_style
                     )
                 ]
