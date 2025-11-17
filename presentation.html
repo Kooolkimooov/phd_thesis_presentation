@@ -105,34 +105,12 @@
                 <section>
 
                     <h2>
-                        Outline
+                        Chain of Underwater Robots
                     </h2>
 
-                    <ul style="padding-top: 4cm; font-size: 130%; text-align: left;">
-
-                        <li class="fragment fade-in">Introduction</li>
-                        <li class="fragment fade-in">State of the Art</li>
-                        <li class="fragment fade-in">Fast Cable Modelling</li>
-                        <li class="fragment fade-in">Robot Chain Control</li>
-                        <li class="fragment fade-in">Conclusion</li>
-
-                    </ul>
-
-                </section>
-
-                <section>
-
-                    <h2>
-                        Introduction
-                    </h2>
-
-                </section>
-
-                <section>
-
-                    <h2>
-                        State of the Art
-                    </h2>
+                    <section>ROVs</section>
+                    <section>Definition</section>
+                    <section>Previous Work</section>
 
                 </section>
 
@@ -142,34 +120,131 @@
                         Fast Cable Modelling
                     </h2>
 
+                    <section>SOTA</section>
+
+                    <section>
+
+                        <h3>
+                            Experimental Campaign
+                        </h3>
+
+                        <table class="fragment fade-in" style="width: 90%;">
+                            <tr>
+                                <td style="border: none; text-align: center;">
+                                    <img width="290vh" src="./media/cable_coaxial.jpg">
+                                    <t style="white-space: nowrap;">(1) Coaxial</t>
+                                    <img />
+                                </td>
+                                <td style="border: none; text-align: center;">
+                                    <img width="290vh" src="./media/cable_four_pairs.jpg">
+                                    <t style="white-space: nowrap;">(2) Four pairs</t>
+                                    <img />
+                                </td>
+                                <td style="border: none; text-align: center;">
+                                    <img width="290vh" src="./media/cable_two_pairs.jpg">
+                                    <t style="white-space: nowrap;">(3) Two pairs</t>
+                                    <img />
+                                </td>
+                                <td style="border: none; text-align: center;">
+                                    <img width="290vh" src="./media/cable_floating.jpg">
+                                    <t style="white-space: nowrap;">(4) Floating</t>
+                                    <img />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: none; text-align: center;">
+                                    <img width="290vh" src="./media/cable_rope.jpg">
+                                    <t style="white-space: nowrap;">(5) Rope</t>
+                                    <img />
+                                </td>
+                                <td style="border: none; text-align: center;">
+                                    <img width="290vh" src="./media/cable_weighted.jpg">
+                                    <t style="white-space: nowrap;">(6) Weighted</t>
+                                    <img />
+                                </td>
+                                <td style="border: none; text-align: center;">
+                                    <img width="290vh" src="./media/cable_chain.jpg">
+                                    <t style="white-space: nowrap;">(7) Chain</t>
+                                    <img />
+                                </td>
+                                <td style="border: none; text-align: center;">
+                                    <img width="290vh" src="./media/cable_elastic.jpg">
+                                    <t style="white-space: nowrap;">(8) Elastic</t>
+                                    <img />
+                                </td>
+                            </tr>
+                        </table>
+
+                    </section>
+
+                    <section>
+
+                        <h3>
+                            Experimental Setup
+                        </h3>
+
+                        <div class="fragment fade-in" style="display:flex; gap:1cm;">
+
+                            <div style="flex:1 1 45%">
+                                <img width="100%" src="./media/catenary_experiment_bluerov_picture_1.jpg" />
+                            </div>
+
+                            <div style="flex:1 1 45%;">
+
+                                <ul style="text-align: left; padding-top: 2cm;">
+                                    <li>Pool: 7m x 4m x 3m</li>
+                                    <li class="fragment fade-in">Cable attached to the robot and a static point</li>
+                                    <li class="fragment fade-in">Two speeds</li>
+                                    <li class="fragment fade-in">Two starting points</li>
+                                    <li class="fragment fade-in">Two direction of motion</li>
+                                    <li class="fragment fade-in">Tracked on a motion capture system (mm accuracy)</li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                        <p class="fragment fade-in">
+                            Results in 129 recorded sequences over all combinations
+                        </p>
+
+                    </section>
+
                     <section>
 
                         <h3>
                             Catenary model
                         </h3>
 
-                        <div class="fragment fade-in" style="display:flex; gap:1cm;">
+                        <div class="fragment fade-in" data-fragment-index="0" style="display:flex; gap:1cm;">
 
                             <div style="flex:1 1 45%">
                                 <img src="media/vertical_catenary_schematic.png">
                             </div>
-
+                            <!-- ref matheus, catenary robot, -->
                             <div style="flex:1 1 45%;">
-                                <p style="text-align:left;">
-                                    Described by:
-                                </p>
-                                <p><!--noformat-->
-                                    $\coord{z}{v} = \frac{\cosh{(\coord{x}{v}~\catC)} - 1}{\catC}, \quad \coord{x}{v} \in \left[-\catD-\catdD,~\catD\right]$
-                                </p><!--noformat-->
+                                <div class="fragment fade-out" data-fragment-index="6" style="position: absolute">
+                                    <p style="text-align:left;">
+                                        Described by:
+                                    </p>
+                                    <p><!--noformat-->
+                                        $\coord{z}{v} = \frac{\cosh{(\coord{x}{v}~\catC)} - 1}{\catC}, \quad \coord{x}{v} \in \left[-\catD-\catdD,~\catD\right]$
+                                    </p><!--noformat-->
 
-                                <ul style="text-align: left; padding-top: 1cm;">
-                                    <li class="fragment fade-in">Defined in the vertical plane $\lplanefullxz{v}$</li>
-                                    <li class="fragment fade-in">With $\catC \in \mathbb{R}^*_+$</li>
-                                    <li class="fragment fade-in">Homogeneous</li>
-                                    <li class="fragment fade-in">Non elastic</li>
-                                    <li class="fragment fade-in">Infinitely flexible</li>
-                                    <li class="fragment fade-in">Only subject to weight</li>
-                                </ul>
+                                    <ul style="text-align: left; padding-top: 1cm;">
+                                        <li>Defined in the vertical plane $\lplanefullxz{v}$</li>
+                                        <li class="fragment fade-in" data-fragment-index="1">With $\catC \in
+                                            \mathbb{R}^*_+$</li>
+                                        <li class="fragment fade-in" data-fragment-index="2">Homogeneous</li>
+                                        <li class="fragment fade-in" data-fragment-index="3">Non elastic</li>
+                                        <li class="fragment fade-in" data-fragment-index="4">Infinitely flexible</li>
+                                        <li class="fragment fade-in" data-fragment-index="5">Only subject to weight</li>
+                                    </ul>
+                                </div>
+                                <div class="fragment fade-in" data-fragment-index="6" style="position: absolute">
+                                    <p style="padding-top: 5cm;">
+                                        In water, Buoyancy << Weight </p>
+                                </div>
                             </div>
 
                         </div>
@@ -185,7 +260,9 @@
                                     Geometric parameters are:
                                 </p>
 
-                                <ul style="text-align: left; padding-top: 1cm;">
+                                <ul style="text-align: left; padding-top: 1cm; font-size: 94%;">
+                                    <li class="fragment fade-in">$\fvect{a}{v}$ and $\fvect{b}{v}$ the attachment points
+                                    </li>
                                     <li class="fragment fade-in">$\catL$ the length of the cable</li>
                                     <li class="fragment fade-in">$\catC$ the catenary parameter</li>
                                     <li class="fragment fade-in">$\catH$ the sag</li>
@@ -193,6 +270,7 @@
                                         $\vect{b}$</li>
                                     <li class="fragment fade-in">$\catD$ the horizontal half-distance</li>
                                     <li class="fragment fade-in">$\catdD$ the horizontal offset</li>
+                                    <li class="fragment fade-in">$\catl = \catdD + 2\catD$ </li>
                                 </ul>
                             </div>
 
@@ -202,8 +280,8 @@
 
                         </div>
 
-                        <div class="fragment fade-in">
-                            Knowing $\vect{a}$ and $\vect{b}$, we can solve for $\catC$ in this equation:
+                        <div class="fragment fade-in" style="padding-top: 1cm;">
+                            Knowing $\fvect{a}{v}$ and $\fvect{b}{v}$, we can solve this equation for $\catC$:
                             <p style="padding-top: 2cm;">
                                 $\catC{}^2\left(\catL{}^2 - \catdH{}^2\right) =
                                 4\sinh^2{\left(\frac{\catl{}\catC{}}{2}\right)}$
@@ -227,9 +305,6 @@
                     </section>
 
                     <section>
-
-                        <h2 style="position: absolute; z-index: 100; color: red;">TODO: convert to plotly interactive
-                            plot</h2>
 
                         <video class="fragment" data-play-on-fragment controls src="media/Catenary.mp4"
                             style="height: 80vh;"></video>
@@ -296,94 +371,6 @@
                     <section>
 
                         <h3>
-                            Experimental validation
-                        </h3>
-
-                        <table style="width: 90%;">
-                            <tr>
-                                <td style="border: none; text-align: center;">
-                                    <img width="290vh" src="./media/cable_coaxial.jpg">
-                                    <t style="white-space: nowrap;">(1) Coaxial</t>
-                                    <img />
-                                </td>
-                                <td style="border: none; text-align: center;">
-                                    <img width="290vh" src="./media/cable_four_pairs.jpg">
-                                    <t style="white-space: nowrap;">(2) Four pairs</t>
-                                    <img />
-                                </td>
-                                <td style="border: none; text-align: center;">
-                                    <img width="290vh" src="./media/cable_two_pairs.jpg">
-                                    <t style="white-space: nowrap;">(3) Two pairs</t>
-                                    <img />
-                                </td>
-                                <td style="border: none; text-align: center;">
-                                    <img width="290vh" src="./media/cable_floating.jpg">
-                                    <t style="white-space: nowrap;">(4) Floating</t>
-                                    <img />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="border: none; text-align: center;">
-                                    <img width="290vh" src="./media/cable_rope.jpg">
-                                    <t style="white-space: nowrap;">(5) Rope</t>
-                                    <img />
-                                </td>
-                                <td style="border: none; text-align: center;">
-                                    <img width="290vh" src="./media/cable_weighted.jpg">
-                                    <t style="white-space: nowrap;">(6) Weighted</t>
-                                    <img />
-                                </td>
-                                <td style="border: none; text-align: center;">
-                                    <img width="290vh" src="./media/cable_chain.jpg">
-                                    <t style="white-space: nowrap;">(7) Chain</t>
-                                    <img />
-                                </td>
-                                <td style="border: none; text-align: center;">
-                                    <img width="290vh" src="./media/cable_elastic.jpg">
-                                    <t style="white-space: nowrap;">(8) Elastic</t>
-                                    <img />
-                                </td>
-                            </tr>
-                        </table>
-
-                    </section>
-
-                    <section>
-
-                        <h3>
-                            Experimental setup
-                        </h3>
-
-                        <div class="fragment fade-in" style="display:flex; gap:1cm;">
-
-                            <div style="flex:1 1 45%">
-                                <img width="100%" src="./media/catenary_experiment_bluerov_picture_1.jpg" />
-                            </div>
-
-                            <div style="flex:1 1 45%;">
-
-                                <ul style="text-align: left; padding-top: 2cm;">
-                                    <li>Pool: 7m x 4m x 3m</li>
-                                    <li class="fragment fade-in">Cable attached to the robot and a static point</li>
-                                    <li class="fragment fade-in">Two speeds</li>
-                                    <li class="fragment fade-in">Two starting points</li>
-                                    <li class="fragment fade-in">Two direction of motion</li>
-                                    <li class="fragment fade-in">Tracked on a motion capture system (mm accuracy)</li>
-                                </ul>
-
-                            </div>
-
-                        </div>
-
-                        <p class="fragment fade-in">
-                            Results in 129 recorded sequences over all combinations
-                        </p>
-
-                    </section>
-
-                    <section>
-
-                        <h3>
                             Accuracy metric
                         </h3>
 
@@ -415,9 +402,6 @@
                         <h3>
                             Results
                         </h3>
-
-                        <h2 style="position: absolute; z-index: 100; color: red;">TODO: convert to plotly interactive
-                            plot</h2>
 
                         <p>
                             Surge motion with the weighted cable (6)
@@ -482,26 +466,6 @@
                     <section>
 
                         <h3>
-                            Residual according to parameters for the weighted cable (6)
-                        </h3>
-
-                        <div style="display: flex; gap: 1rem; width: 100%; height: 67vh; align-items: stretch;">
-                            <div style="flex: 1 1 auto; min-width: 0;">
-                                <canvas id="cable-6-boxplot"></canvas>
-                            </div>
-                            <div
-                                style="flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-start;">
-                                <img src="./media/cable_weighted.jpg" style="height: 32vh; padding: 0; margin: 0;" />
-                                <img src="./media/cable_weighted_top.jpg"
-                                    style="height: 32vh; padding: 0; margin: 0;" />
-                            </div>
-                        </div>
-
-                    </section>
-
-                    <section>
-
-                        <h3>
                             Residual according to parameters for the two pairs cable (3)
                         </h3>
 
@@ -513,6 +477,26 @@
                                 style="flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-start;">
                                 <img src="./media/cable_two_pairs.jpg" style="height: 32vh; padding: 0; margin: 0;" />
                                 <img src="./media/cable_two_pairs_top.jpg"
+                                    style="height: 32vh; padding: 0; margin: 0;" />
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <section>
+
+                        <h3>
+                            Residual according to parameters for the weighted cable (6)
+                        </h3>
+
+                        <div style="display: flex; gap: 1rem; width: 100%; height: 67vh; align-items: stretch;">
+                            <div style="flex: 1 1 auto; min-width: 0;">
+                                <canvas id="cable-6-boxplot"></canvas>
+                            </div>
+                            <div
+                                style="flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-start;">
+                                <img src="./media/cable_weighted.jpg" style="height: 32vh; padding: 0; margin: 0;" />
+                                <img src="./media/cable_weighted_top.jpg"
                                     style="height: 32vh; padding: 0; margin: 0;" />
                             </div>
                         </div>
@@ -539,59 +523,10 @@
                     <section>
 
                         <h3>
-                            Single sequence, sway motion, weighted cable (6)
+                            Comparison to a finite difference model with the weighted cable (6)
                         </h3>
 
-                        <div class="sequence-chart">
-                            <div class="sequence-panel">
-                                <canvas id="cable-6-sway-error" role="img"></canvas>
-                            </div>
-                            <div class="sequence-panel">
-                                <canvas id="cable-6-sway-speed" role="img"></canvas>
-                            </div>
-                        </div>
-
-                    </section>
-
-                    <section>
-
-                        <h3>
-                            Single sequence, surge motion, two pairs cable (3)
-                        </h3>
-
-                        <div class="sequence-chart">
-                            <div class="sequence-panel">
-                                <canvas id="cable-3-surge-error" role="img"></canvas>
-                            </div>
-                            <div class="sequence-panel">
-                                <canvas id="cable-3-surge-speed" role="img"></canvas>
-                            </div>
-                        </div>
-
-                    </section>
-
-                    <section>
-
-                        <h3>
-                            Single sequence, sway motion, two pairs cable (3)
-                        </h3>
-
-                        <div class="sequence-chart">
-                            <div class="sequence-panel">
-                                <canvas id="cable-3-sway-error" role="img"></canvas>
-                            </div>
-                            <div class="sequence-panel">
-                                <canvas id="cable-3-sway-speed" role="img"></canvas>
-                            </div>
-                        </div>
-
-                    </section>
-
-                    <section>
-
-                        <h3>
-                            Comparison to a finite difference model
-                        </h3>
+                        citer charly
 
                         <div style="display: flex; gap: 1rem; width: 100%; height: 67vh; align-items: stretch;">
                             <div style="flex: 1 1 auto; min-width: 0;">
@@ -610,37 +545,37 @@
                     <section>
 
                         <h3>
-                            Dynamic expression of the augmentation angles
-                        </h3>
-
-                    </section>
-
-                    <section>
-
-                        <h3>
                             Conclusion
                         </h3>
 
                         <ul style="text-align: left; display: flex; flex-direction: column; gap: 20px;">
                             <li>
-                                Augmented catenary model to account for dynamic effects
+                                Experimental campaign over a variety of cables and motions
                             </li>
-                            <li>
-                                Experimental validation over a variety of cables and motions
+                            <li class="fragment fade-in">
+                                Augmented catenary model to account for <b>geometric deformations</b> due to dynamic
+                                effects; validated with experimental data
                             </li>
-                            <li>
+                            <li class="fragment fade-in">
+                                Limited to in-plane representation
+                            </li>
+                            <li class="fragment fade-in">
                                 Publications:
-                                <ul style="font-size: 90%; display: flex; flex-direction: column; gap: 10px;">
+                                <ul style="font-size: 80%; display: flex; flex-direction: column; gap: 10px;">
                                     <li>
                                         <b>M. Filliung</b> et al., « An Augmented Catenary Model for Underwater Tethered
-                                        Robots », in 2024 IEEE ICRA, doi: 10.1109/ICRA57147.2024.10611132.
+                                        Robots », in 2024 IEEE ICRA
                                     </li>
                                     <li>
-                                        C. Peraud, <b>M. Filliung</b>, C. Anthierens, C. Dune, N. Boizot, et V. Hugel, «
+                                        C. Peraud, <b>M. Filliung</b> et al., «
                                         IMU-based Monitoring of Buoy-Ballast System through Cable Dynamics Simulation »,
-                                        in 2024 IEEE IROS, doi: 10.1109/IROS58592.2024.10802858.
+                                        in 2024 IEEE IROS
                                     </li>
+                                    <li>Dataset to be published</li>
                                 </ul>
+                            </li>
+                            <li class="fragment fade-in">
+                                Work in progress: Dynamic expression of the augmentation angles
                             </li>
                         </ul>
 
@@ -653,6 +588,9 @@
                     <h2>
                         Robot Chain Control
                     </h2>
+
+                    <section>SOTA</section>
+                    <section>modèle haut niveau</section>
 
                     <section>
 
@@ -675,7 +613,7 @@
                             \end{align} 
                         </p><!--noformat-->
 
-                        <ul style="text-align: left;">
+                        <ul style="text-align: left; font-size: 90%;">
 
                             <li class="fragment fade-in">
                                 $\vect{\eta} = \left[\scal{x},
@@ -807,7 +745,7 @@
                                 </p><!--noformat-->
 
                                 <p class="fragment fade-in" style="text-align:left; padding-top: 3cm;">
-                                    Augmented catenary model dynamics was not available at the time of this work
+                                    Augmentation angles are not used here to focus on vertical cable clearance
                                 </p>
                             </div>
 
@@ -1100,9 +1038,20 @@
                                     <li class="fragment fade-in">
                                         Tailored environment and trajectory
                                     </li>
+                                    <li class="fragment fade-in">
+                                        Under actuated robots:
+                                        <ul>
+                                            <li>
+                                                ROVs with linear and yaw actuation
+                                            </li>
+                                            <li>
+                                                USV with forward and yaw actuation
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
 
-                                <h4 class="fragment fade-in" style="padding-top: 2cm;">
+                                <h4 class="fragment fade-in" style="padding-top: 0cm;">
                                     Runs
                                 </h4>
 
@@ -1131,7 +1080,7 @@
                 <section>
 
                     <h2>
-                        Conclusion
+                        Conclusion and Perspectives
                     </h2>
 
                 </section>
@@ -1141,15 +1090,55 @@
                     <h2>
                         Appendix
                     </h2>
+
                     <section data-visibility="uncounted">
 
-                        test1
+                        <h3>
+                            Single sequence, sway motion, weighted cable (6)
+                        </h3>
+
+                        <div class="sequence-chart">
+                            <div class="sequence-panel">
+                                <canvas id="cable-6-sway-error" role="img"></canvas>
+                            </div>
+                            <div class="sequence-panel">
+                                <canvas id="cable-6-sway-speed" role="img"></canvas>
+                            </div>
+                        </div>
 
                     </section>
 
                     <section data-visibility="uncounted">
 
-                        test2
+                        <h3>
+                            Single sequence, surge motion, two pairs cable (3)
+                        </h3>
+
+                        <div class="sequence-chart">
+                            <div class="sequence-panel">
+                                <canvas id="cable-3-surge-error" role="img"></canvas>
+                            </div>
+                            <div class="sequence-panel">
+                                <canvas id="cable-3-surge-speed" role="img"></canvas>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <section data-visibility="uncounted">
+
+                        <h3>
+                            Single sequence, sway motion, two pairs cable (3)
+                        </h3>
+
+                        <div class="sequence-chart">
+                            <div class="sequence-panel">
+                                <canvas id="cable-3-sway-error" role="img"></canvas>
+                            </div>
+                            <div class="sequence-panel">
+                                <canvas id="cable-3-sway-speed" role="img"></canvas>
+                            </div>
+                        </div>
 
                     </section>
 
