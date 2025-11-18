@@ -151,7 +151,41 @@
                         Fast Cable Modelling
                     </h2>
 
-                    <section>SOTA</section>
+                    <section>
+
+                        <h3>
+                            Overview of Cable Modelling
+                        </h3>
+                        <h6 style="position: fixed; bottom: 0%; text-align: left;">
+                            <p class="fragment fade-in" data-fragment-index="1" style="margin: 0; padding: 0;">
+                                ¹ C. Viel, « Self-management of the umbilical of a ROV for underwater exploration »
+                            </p>
+                            <p class="fragment fade-in" data-fragment-index="2" style="margin: 0; padding: 0;">
+                                ² M. Laranjeira, C. Dune, et V. Hugel, « Catenary-based visual servoing for tethered
+                                robots »
+                            </p>
+                            <p class="fragment fade-in" data-fragment-index="3" style="margin: 0; padding: 0;">
+                                ³ C. Peraud, et al, « IMU-based Monitoring of Buoy-Ballast System through Cable Dynamics
+                                Simulation »
+
+                            </p>
+                        </h6>
+
+                        <div style="display: flex; flex-direction: column; justify-content: center;">
+                            <div>
+                                <img src="./media/cable_models.png" />
+                            </div>
+                            <div style="display: flex;">
+                                <p class="fragment fade-in" data-fragment-index="1" style="padding-left: 8cm;">
+                                    Constrained¹</p>
+                                <p class="fragment fade-in" data-fragment-index="2" style="padding-left: 7cm;">Static²
+                                </p>
+                                <p class="fragment fade-in" data-fragment-index="3" style="padding-left: 7.5cm;">
+                                    Dynamic³</p>
+                            </div>
+                        </div>
+
+                    </section>
 
                     <section>
 
@@ -244,7 +278,7 @@
                     <section>
 
                         <h3>
-                            Catenary model
+                            Catenary Model
                         </h3>
 
                         <div class="fragment fade-in" data-fragment-index="0" style="display:flex; gap:1cm;">
@@ -324,7 +358,7 @@
                     <section>
 
                         <h3>
-                            Augmented catenary model
+                            Augmented Catenary Model
                         </h3>
 
                         <span class="fragment fade-in" data-fragment-index="1">
@@ -402,7 +436,7 @@
                     <section>
 
                         <h3>
-                            Accuracy metric
+                            Accuracy Metric
                         </h3>
 
                         <p>
@@ -431,7 +465,7 @@
                     <section>
 
                         <h3>
-                            Results
+                            Results: Trajectory Visualization
                         </h3>
 
                         <p>
@@ -452,7 +486,7 @@
                     <section>
 
                         <h3>
-                            Residuals per cable
+                            Results: Residuals per Cable
                         </h3>
 
                         <div
@@ -497,7 +531,7 @@
                     <section>
 
                         <h3>
-                            Residual per parameters for the two pairs cable (3)
+                            Results: Residual per Parameters, Two Pairs Cable (3)
                         </h3>
 
                         <div style="display: flex; gap: 1rem; width: 100%; height: 80vh; align-items: stretch;">
@@ -517,7 +551,7 @@
                     <section>
 
                         <h3>
-                            Residual per parameters for the weighted cable (6)
+                            Results: Residual per Parameters, Weighted Cable (6)
                         </h3>
 
                         <div style="display: flex; gap: 1rem; width: 100%; height: 80vh; align-items: stretch;">
@@ -537,7 +571,7 @@
                     <section>
 
                         <h3>
-                            Single sequence, surge motion, weighted cable (6)
+                            Results: Sequence, Surge Motion, Weighted Cable (6)
                         </h3>
 
                         <div class="sequence-chart">
@@ -554,20 +588,21 @@
                     <section>
 
                         <h3>
-                            Comparison to a finite difference model with the weighted cable (6)
+                            Comparison to a Finite Difference Model¹, Weighted Cable (6)
                         </h3>
+                        <h6 style="position: fixed; bottom: 0%; text-align: left;">
+                            ¹ C. Peraud, M. Filliung, et al., « IMU-based Monitoring of Buoy-Ballast System through
+                            Cable Dynamics Simulation »
+                        </h6>
 
-                        citer charly
-
-                        <div style="display: flex; gap: 1rem; width: 100%; height: 67vh; align-items: stretch;">
-                            <div style="flex: 1 1 auto; min-width: 0;">
+                        <div style="display: flex; gap: 1rem; height: 60vh; width: 100%;">
+                            <div style="flex: 1 1 60%; padding-left: 5cm;">
                                 <canvas id="cable-6-boxplot-diff"></canvas>
                             </div>
                             <div
-                                style="flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-start;">
-                                <img src="./media/cable_weighted.jpg" style="height: 32vh; padding: 0; margin: 0;" />
-                                <img src="./media/cable_weighted_top.jpg"
-                                    style="height: 32vh; padding: 0; margin: 0;" />
+                                style="flex: 0 0 15%; display: flex; flex-direction: column; justify-content: flex-start;">
+                                <img src="./media/cable_weighted.jpg" />
+                                <img src="./media/cable_weighted_top.jpg" />
                             </div>
                         </div>
 
@@ -626,7 +661,7 @@
                     <section>
 
                         <h3>
-                            Robot dynamics¹
+                            Robot Dynamics¹
                         </h3>
                         <h6 style="position: fixed; bottom: 0%; text-align: left;">
                             ¹ T. I. Fossen, Handbook of Marine Craft Hydrodynamics and Motion Control. John Wiley &
@@ -755,7 +790,7 @@
                     <section>
 
                         <h3>
-                            Cable model
+                            Cable Model
                         </h3>
 
                         <div class="fragment fade-in" style="display:flex; gap:1cm;">
@@ -787,7 +822,7 @@
                     <section>
 
                         <h3>
-                            Cable model's forces on its endpoints
+                            Cable Model's Forces on its Endpoints
                         </h3>
 
                         <div class="fragment fade-in" style="display:flex; gap:1cm;">
@@ -832,7 +867,7 @@
                     <section>
 
                         <h3>
-                            Robot chain model
+                            Robot Chain Model
                         </h3>
 
                         <div class="fragment fade-in" style="display:flex; gap:1cm;">
@@ -864,7 +899,7 @@
                     <section>
 
                         <h3>
-                            Reactive control
+                            Reactive Control
                         </h3>
 
                         <p style="text-align: left;">
@@ -904,7 +939,7 @@
                     <section>
 
                         <h3>
-                            Path planning
+                            Path Planning
                         </h3>
 
                         <p style="text-align: left;">
@@ -976,7 +1011,7 @@
                     <section>
 
                         <h3>
-                            Model predictive control
+                            Model Predictive Control
                         </h3>
 
                         <p style="text-align: left;">
@@ -1049,7 +1084,7 @@
                     <section>
 
                         <h3>
-                            Simulation setup
+                            Simulation Setup
                         </h3>
 
                         <div class="fragment fade-in" style="display:flex; gap:1cm;">
