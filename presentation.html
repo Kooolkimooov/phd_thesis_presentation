@@ -106,6 +106,35 @@
                     <h2 style="background-color: #ffffffcc;">
                         Remotely Operated Vehicle
                     </h2>
+
+                    <ul class="fragment fade-in"
+                        style="text-align: left; position: absolute; left:0%; top:9cm; background-color: #ffffffcc; border-radius: .25cm; padding: 10px 20px 10px 60px; margin-left: 0%;">
+                        <li>
+                            Tethered
+                        </li>
+                        <li class="fragment fade-in">
+                            Power supply
+                        </li>
+                        <li class="fragment fade-in">
+                            Real-time communication
+                        </li>
+                        <li class="fragment fade-in">
+                            Physical link to the robot
+                        </li>
+                    </ul>
+
+                    <ul class="fragment fade-in"
+                        style="text-align: left; position: absolute; left:0%; top:21cm; background-color: #ff5151cc; border-radius: .25cm; padding: 10px 20px 10px 60px; margin-left: 0%;">
+                        <li>
+                            Entanglement
+                        </li>
+                        <li class="fragment fade-in">
+                            Disturbances on the robot
+                        </li>
+                        <li class="fragment fade-in">
+                            Deployment constraints
+                        </li>
+                    </ul>
                 </section>
 
                 <section>
@@ -129,8 +158,8 @@
                         <div class="fragment fade-out" data-fragment-index="1"
                             style="height:85vh; width:auto; display:flex; flex-direction:column; align-items:center; justify-content:center;">
                             <img src="./media/chain_of_two_ocean_one.png" style="height:100%;">
-                            <p style="font-size: 70%; padding: 0; margin: 0;">V. Creuze (LIRMM) &amp; O. Katib
-                                (Stanford)</p>
+                            <p style="font-size: 70%; padding: 0; margin: 0;">V. Creuze (LIRMM) | O. Khatib (Stanford)
+                            </p>
                         </div>
 
                         <div class="fragment fade-in" data-fragment-index="1"
@@ -138,12 +167,17 @@
                             <div
                                 style="position: fixed; top: 25%; display:flex; flex-direction:column; align-items:center; gap:.5rem;">
                                 <div style="display:flex; justify-content:center; align-items:center; gap:1cm;">
-                                    <video class="fragment" controls data-play-on-fragment data-fragment-index="1"
-                                        src="./media/chain_of_two_pool.mp4" style="max-height:60vh;"></video>
-                                    <video class="fragment" controls data-play-on-fragment data-fragment-index="1"
-                                        src="./media/chain_of_three_pool.mp4" style="max-height:60vh;"></video>
+                                    <div>
+                                        <video class="fragment" controls data-play-on-fragment data-fragment-index="1"
+                                            src="./media/chain_of_two_pool.mp4" style="max-height:60vh;"></video>
+                                        <p style="font-size: 70%; padding: 0; margin: 0;">COSMER | IFREMER</p>
+                                    </div>
+                                    <div>
+                                        <video class="fragment" controls data-play-on-fragment data-fragment-index="1"
+                                            src="./media/chain_of_three_pool.mp4" style="max-height:60vh;"></video>
+                                        <p style="font-size: 70%; padding: 0; margin: 0;">COSMER | CIRS GIRONA</p>
+                                    </div>
                                 </div>
-                                <p style="font-size: 70%; padding: 0; margin: 0;">COSMER</p>
                             </div>
                         </div>
 
@@ -196,7 +230,49 @@
                     <section>
 
                         <h3>
-                            Experimental Campaign
+                            Experimental Setup
+                        </h3>
+                        <h6 style="position: fixed; bottom: 0%; text-align: left;">
+                            <p class="fragment fade-in" data-fragment-index="7" style="margin: 0; padding: 0;">
+                                ¹ <a
+                                    href="https://www.qualisys.com/cameras/underwater/">https://www.qualisys.com/cameras/underwater/</a>
+                            </p>
+                        </h6>
+
+                        <div class="fragment fade-in" data-fragment-index="1"
+                            style="display:flex; gap:1cm; padding-top: 1cm;">
+
+                            <div style="flex:1 1 45%">
+                                <img width="100%" src="./media/catenary_experiment_bluerov_picture_1.jpg" />
+                            </div>
+
+                            <div style="flex:1 1 45%;">
+
+                                <ul style="text-align: left;">
+                                    <li>Cable attached to the robot and a static point</li>
+                                    <li class="fragment fade-in" data-fragment-index="2">Pool: 7m x 4m x 3m</li>
+                                    <li class="fragment fade-in" data-fragment-index="3">Eight different cables</li>
+                                    <li class="fragment fade-in" data-fragment-index="4">Two speeds</li>
+                                    <li class="fragment fade-in" data-fragment-index="5">Two starting points</li>
+                                    <li class="fragment fade-in" data-fragment-index="6">Two direction of motion</li>
+                                    <li class="fragment fade-in" data-fragment-index="7">Tracked on a Qualisys¹ motion
+                                        capture system</li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                        <p class="fragment fade-in">
+                            Results in 129 recorded sequences over all combinations
+                        </p>
+
+                    </section>
+
+                    <section>
+
+                        <h3>
+                            Cables Tested
                         </h3>
 
                         <table class="fragment fade-in" style="width: 90%;">
@@ -251,43 +327,10 @@
                     <section>
 
                         <h3>
-                            Experimental Setup
-                        </h3>
-
-                        <div class="fragment fade-in" style="display:flex; gap:1cm;">
-
-                            <div style="flex:1 1 45%">
-                                <img width="100%" src="./media/catenary_experiment_bluerov_picture_1.jpg" />
-                            </div>
-
-                            <div style="flex:1 1 45%;">
-
-                                <ul style="text-align: left; padding-top: 2cm;">
-                                    <li>Pool: 7m x 4m x 3m</li>
-                                    <li class="fragment fade-in">Cable attached to the robot and a static point</li>
-                                    <li class="fragment fade-in">Two speeds</li>
-                                    <li class="fragment fade-in">Two starting points</li>
-                                    <li class="fragment fade-in">Two direction of motion</li>
-                                    <li class="fragment fade-in">Tracked on a motion capture system (mm accuracy)</li>
-                                </ul>
-
-                            </div>
-
-                        </div>
-
-                        <p class="fragment fade-in">
-                            Results in 129 recorded sequences over all combinations
-                        </p>
-
-                    </section>
-
-                    <section>
-
-                        <h3>
                             Labelling the Data
                         </h3>
 
-                        <video class="fragment" data-play-on-fragment controls src="./media/qtm_surge_6.mp4"
+                        <video class="fragment" data-play-on-fragment controls loop src="./media/qtm_surge_6.mp4"
                             style="height: 70vh;"></video>
 
                         TODO: change to unedited videos of pool + redo the screen capture
@@ -316,9 +359,10 @@
                                     </p><!--noformat-->
 
                                     <ul style="text-align: left; padding-top: 1cm;">
-                                        <li>Defined in the vertical plane $\lplanefullxz{v}$</li>
-                                        <li class="fragment fade-in" data-fragment-index="1">With $\catC \in
+                                        <li>With $\catC \in
                                             \mathbb{R}^*_+$</li>
+                                        <li class="fragment fade-in" data-fragment-index="1">Defined in the vertical
+                                            plane $\lplanefullxz{v}$</li>
                                         <li class="fragment fade-in" data-fragment-index="2">Homogeneous</li>
                                         <li class="fragment fade-in" data-fragment-index="3">Non elastic</li>
                                         <li class="fragment fade-in" data-fragment-index="4">Infinitely flexible</li>
@@ -345,16 +389,16 @@
                                 </p>
 
                                 <ul style="text-align: left; padding-top: 1cm; font-size: 94%;">
-                                    <li class="fragment fade-in">$\fvect{a}{v}$ and $\fvect{b}{v}$ the attachment points
+                                    <li>$\fvect{a}{v}$ and $\fvect{b}{v}$ the attachment points
                                     </li>
-                                    <li class="fragment fade-in">$\catL$ the length of the cable</li>
-                                    <li class="fragment fade-in">$\catC$ the catenary parameter</li>
-                                    <li class="fragment fade-in">$\catH$ the sag</li>
-                                    <li class="fragment fade-in">$\catdH$ vertical distance between $\vect{a}$ and
+                                    <li>$\catL$ the length of the cable</li>
+                                    <li>$\catC$ the catenary parameter</li>
+                                    <li>$\catH$ the sag</li>
+                                    <li>$\catdH$ vertical distance between $\vect{a}$ and
                                         $\vect{b}$</li>
-                                    <li class="fragment fade-in">$\catD$ the horizontal half-distance</li>
-                                    <li class="fragment fade-in">$\catdD$ the horizontal offset</li>
-                                    <li class="fragment fade-in">$\catl = \catdD + 2\catD$ </li>
+                                    <li>$\catD$ the horizontal half-distance</li>
+                                    <li>$\catdD$ the horizontal offset</li>
+                                    <li>$\catl = \catdD + 2\catD$ </li>
                                 </ul>
                             </div>
 
@@ -380,10 +424,8 @@
                             Augmented Catenary Model
                         </h3>
 
-                        <span class="fragment fade-in" data-fragment-index="1">
-                            <span class="fragment rotate" style="--rotate-angle: 35deg;" data-fragment-index="2">
-                                <img src="media/catenary_experiment_bluerov_picture_0.png" />
-                            </span>
+                        <span class="fragment rotate" style="--rotate-angle: 35deg; visibility: visible; opacity: 1;">
+                            <img style="visibility: visible; opacity: 1;" src="media/catenary_experiment_bluerov_picture_0.png" />
                         </span>
 
                     </section>
