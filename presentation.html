@@ -78,7 +78,7 @@
                         <tr>
                             <td style="border: none; white-space: nowrap; padding-left: 3cm;">Pr. Emmanuel Delaleau</td>
                             <td style="border: none; white-space: nowrap;">Examiner</td>
-                            <td style="border: none; white-space: nowrap;">IRDL, University of Wester Brittany</td>
+                            <td style="border: none; white-space: nowrap;">IRDL, INP Bretagne</td>
                         </tr>
                         <tr>
                             <td style="border: none; white-space: nowrap; padding-left: 3cm;">Dr. Nicolas Boizot</td>
@@ -170,13 +170,15 @@
                                 style="position: fixed; top: 25%; display:flex; flex-direction:column; align-items:center; gap:.5rem;">
                                 <div style="display:flex; justify-content:center; align-items:center; gap:1cm;">
                                     <div>
-                                        <video class="fragment" controls data-play-on-fragment data-fragment-index="1"
-                                            src="./media/chain_of_two_pool.mp4" style="max-height:60vh;"></video>
+                                        <video class="fragment" controls loop data-play-on-fragment
+                                            data-fragment-index="1" src="./media/chain_of_two_pool.mp4"
+                                            style="max-height:60vh;"></video>
                                         <p style="font-size: 70%; padding: 0; margin: 0;">COSMER | IFREMER</p>
                                     </div>
                                     <div>
-                                        <video class="fragment" controls data-play-on-fragment data-fragment-index="1"
-                                            src="./media/chain_of_three_pool.mp4" style="max-height:60vh;"></video>
+                                        <video class="fragment" controls loop data-play-on-fragment
+                                            data-fragment-index="1" src="./media/chain_of_three_pool.mp4"
+                                            style="max-height:60vh;"></video>
                                         <p style="font-size: 70%; padding: 0; margin: 0;">COSMER | CIRS GIRONA</p>
                                     </div>
                                 </div>
@@ -332,10 +334,15 @@
                             Labelling the Data
                         </h3>
 
-                        <video class="fragment" data-play-on-fragment controls loop src="./media/qtm_surge_6.mp4"
-                            style="height: 70vh;"></video>
-
-                        TODO: change to unedited videos of pool + redo the screen capture
+                        <div style="display:flex; flex-direction:column; align-items:center;">
+                            <div style="position: fixed; top: 35%; display:flex; align-items:center; gap:.5rem;">
+                                <video class="fragment" controls data-play-on-fragment data-fragment-index="1" loop
+                                    muted src="./media/L_dynamique6x200dis2_bassin.mp4"
+                                    style="max-height:50vh;"></video>
+                                <video class="fragment" controls data-play-on-fragment data-fragment-index="1" loop
+                                    src="./media/L_dynamique6x200dis2_qtm.mp4" style="max-height: 50vh;"></video>
+                            </div>
+                        </div>
 
                     </section>
 
@@ -427,7 +434,8 @@
                         </h3>
 
                         <span class="fragment rotate" style="--rotate-angle: 35deg; visibility: visible; opacity: 1;">
-                            <img style="visibility: visible; opacity: 1;" src="media/catenary_experiment_bluerov_picture_0.png" />
+                            <img style="visibility: visible; opacity: 1;"
+                                src="media/catenary_experiment_bluerov_picture_0.png" />
                         </span>
 
                     </section>
@@ -743,43 +751,51 @@
                         </p><!--noformat-->
 
                         <ul style="text-align: left; font-size: 90%;">
-
-                            <li class="fragment fade-in">
-                                $\vect{\eta} = \left[\scal{x},
-                                \scal{y}, \scal{z}, \scal{\phi}, \scal{\theta}, \scal{\psi}\right]^{\top}$ is the state
-                                in the world frame $\lframe{W}$
-                            </li>
-                            <li class="fragment fade-in">
-                                $\vect{\nu} = \left[\scal{u}, \scal{v}, \scal{w}, \scal{p}, \scal{q},
-                                \scal{r}\right]^{\top}$ is the linear and angular velocity in the body frame
-                                $\lframe{B}$
-                            </li>
-                            <li class="fragment fade-in">
-                                $\matr{T}\left(\vect{\eta}\right)$ is the transformation matrix from body to world frame
-                            </li>
-                            <li class="fragment fade-in">
-                                $\ldvect{\nu}{r} = \vect{\nu} - \ldvect{\nu}{w}$ is the relative velocity between the
-                                robot and the water
-                            </li>
-                            <li class="fragment fade-in">
-                                $\lrdmatr{M}{rb}$ and $\lrdmatr{M}{a}$ are the rigid-body and added-mass inertia
-                                matrices
-                            </li>
-                            <li class="fragment fade-in">
-                                $\lrdmatr{C}{rb}$ and $\lrdmatr{C}{a}$ are the associated Coriolis matrices
-                            </li>
-                            <li class="fragment fade-in">
-                                $\matr{D}$ is the hydrodynamic damping matrix
-                            </li>
-                            <li class="fragment fade-in">
-                                $\vect{s}\left(\vect{\eta}\right)$ represents the hydrostatic restoring force
-                            </li>
-                            <li class="fragment fade-in">
-                                $\vect{\omega}$ accounts for external forces
-                            </li>
-                            <li class="fragment fade-in">
-                                $\vect{\tau}$ is the control input
-                            </li>
+                            <span class="fragment fade-in">
+                                <li>
+                                    $\vect{\eta} = \left[\scal{x},
+                                    \scal{y}, \scal{z}, \scal{\phi}, \scal{\theta}, \scal{\psi}\right]^{\top}$ is the
+                                    state
+                                    in the world frame $\lframe{W}$
+                                </li>
+                                <li>
+                                    $\vect{\nu} = \left[\scal{u}, \scal{v}, \scal{w}, \scal{p}, \scal{q},
+                                    \scal{r}\right]^{\top}$ is the linear and angular velocity in the body frame
+                                    $\lframe{B}$
+                                </li>
+                                <li>
+                                    $\ldvect{\nu}{r} = \vect{\nu} - \ldvect{\nu}{w}$ is the relative velocity between
+                                    the
+                                    robot and the water
+                                </li>
+                                <li>
+                                    $\matr{T}\left(\vect{\eta}\right)$ is the transformation matrix from body to world
+                                    frame
+                                </li>
+                            </span>
+                            <span class="fragment fade-in">
+                                <li>
+                                    $\lrdmatr{M}{rb}$ and $\lrdmatr{M}{a}$ are the rigid-body and added-mass inertia
+                                    matrices
+                                </li>
+                                <li>
+                                    $\lrdmatr{C}{rb}$ and $\lrdmatr{C}{a}$ are the associated Coriolis matrices
+                                </li>
+                                <li>
+                                    $\matr{D}$ is the hydrodynamic damping matrix
+                                </li>
+                            </span>
+                            <span class="fragment fade-in">
+                                <li>
+                                    $\vect{s}\left(\vect{\eta}\right)$ represents the hydrostatic restoring force
+                                </li>
+                                <li>
+                                    $\vect{\omega}$ accounts for external forces
+                                </li>
+                                <li>
+                                    $\vect{\tau}$ is the control input
+                                </li>
+                            </span>
 
                         </ul>
 
@@ -991,11 +1007,12 @@
                             \end{align}
                         </p><!--noformat-->
 
-                            <span class="fragment fade-in">
-                                <p class="fragment highlight-red" style="text-align: left;">
-                                    Robot $i+1$ has no consideration for robots other than its leader: robot $i$
-                                </p>
-                            </span>
+                            <img class="fragment fade-in-then-out" style="position: absolute; background-color: white; left: 25%; top: 25%;"
+                                src="./media/vertical_catenary_schematic.png" />
+
+                        <p class="fragment fade-in" style="text-align: left;">
+                            Robot $i+1$ has no consideration for robots other than its leader: robot $i$
+                        </p>
 
                     </section>
 
@@ -1024,7 +1041,7 @@
                                 </p>
                                 <ul style="text-align: left; white-space: nowrap;">
                                     <li class="fragment fade-in" data-fragment-index="1">
-                                        $\vect{p}=\left(\ldvect{x}{0}, \dots,\ldvect{x}{n}\right)$
+                                        $\vect{p}=\left(\ldvect{x}{0}, \dots,\ldvect{x}{n}\right)$ the optimized path
                                     </li>
                                     <li class="fragment fade-in" data-fragment-index="2">
                                         $\res{k} = \ldvect{x}{k}-\llvect{x}{\text{target}}{k}$ the error at step $k$
@@ -1066,7 +1083,7 @@
                         <p class="fragment fade-in"
                             style="position: absolute; padding-top: 9cm; left: 50%; transform: translateX(-50%); white-space: nowrap;"
                             data-fragment-index="9">
-                            Path is re-planned using varrying criteria
+                            Path is re-planned using varrying criteria: time, deviation, etc.
                         </p>
 
                     </section>
@@ -1097,7 +1114,7 @@
                                 </p>
                                 <ul style="text-align: left; white-space: nowrap;">
                                     <li class="fragment fade-in" data-fragment-index="1">
-                                        $\vect{u}=\left(\ldvect{u}{0}, \dots, \ldvect{u}{h}\right)$
+                                        $\vect{u}=\left(\ldvect{u}{0}, \dots, \ldvect{u}{h}\right)$ the optimized control sequence
                                     </li>
                                     <li class="fragment fade-in" data-fragment-index="2">
                                         $\res{k} = \ldvect{x}{k}-\llvect{x}{\text{target}}{k}$ the error at step $k$
@@ -1241,14 +1258,6 @@
                         </h3>
 
                         plot error, time, and constraints values
-
-                    </section>
-
-                    <section>
-
-                        <h3>
-                            Conclusion
-                        </h3>
 
                     </section>
 
