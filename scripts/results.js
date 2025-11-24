@@ -20,28 +20,36 @@
             label: 'Visual Servoing (inspired)',
             color: palette.vs,
             trackingPath: './data/vs_simulation__br_0_position_tracking_error_1758791034.txt',
-            distancePath: './data/vs_simulation_distance_to_seafloor_1758791034.txt'
+            distancePath: './data/vs_simulation_distance_to_seafloor_1758791034.txt',
+            interDistancePath: './data/vs_simulation_distance_1758791034.txt',
+            interHorizontalDistancePath: './data/vs_simulation_horizontal_distance_1758791034.txt'
         },
         {
             key: 'pp1',
             label: 'Path Planning (systematic)',
             color: palette.pp1,
             trackingPath: './data/pp_simulation_1__br_0_position_tracking_error_1757607544.txt',
-            distancePath: './data/pp_simulation_1_distance_to_seafloor_1757607544.txt'
+            distancePath: './data/pp_simulation_1_distance_to_seafloor_1757607544.txt',
+            interDistancePath: './data/pp_simulation_1_distance_1757607544.txt',
+            interHorizontalDistancePath: './data/pp_simulation_1_horizontal_distance_1757607544.txt'
         },
         {
             key: 'pp2',
             label: 'Path Planning (triggered)',
             color: palette.pp2,
             trackingPath: './data/pp_simulation_2__br_0_position_tracking_error_1758052568.txt',
-            distancePath: './data/pp_simulation_2_distance_to_seafloor_1758052568.txt'
+            distancePath: './data/pp_simulation_2_distance_to_seafloor_1758052568.txt',
+            interDistancePath: './data/pp_simulation_2_distance_1758052568.txt',
+            interHorizontalDistancePath: './data/pp_simulation_2_horizontal_distance_1758052568.txt'
         },
         {
             key: 'mpc',
             label: 'Model Predictive Control',
             color: palette.mpc,
             trackingPath: './data/mpc_simulation__br_0_position_tracking_error_1757359864.txt',
-            distancePath: './data/mpc_simulation_distance_to_seafloor_1757359864.txt'
+            distancePath: './data/mpc_simulation_distance_to_seafloor_1757359864.txt',
+            interDistancePath: './data/mpc_simulation_distance_1757359864.txt',
+            interHorizontalDistancePath: './data/mpc_simulation_horizontal_distance_1757359864.txt'
         }
     ];
 
@@ -290,19 +298,6 @@
             let maxValue = Number.NEGATIVE_INFINITY;
 
             const datasets = [];
-            const constraintDataset = {
-                ...lineStyle,
-                label: 'constraint',
-                data: [],
-                borderColor: '#333333',
-                borderDash: [2, 6],
-                yAxisID: 'constraint',
-                order: 0,
-                pointRadius: 0,
-                pointHoverRadius: 0,
-                fill: false,
-                legendLabel: 'Constraint'
-            };
 
             const cableStyles = [
                 { description: 'cable 1', borderDash: [] },
@@ -345,7 +340,6 @@
                             dataset.data.push({ x: row.time, y: distance });
                         }
                     });
-                    constraintDataset.data.push({ x: row.time, y: 0 });
                 });
 
                 cableDatasets.forEach(ds => {
@@ -355,12 +349,6 @@
                 });
             });
 
-            if (!constraintDataset.data.length && maxTime > 0) {
-                constraintDataset.data.push({ x: 0, y: 0 }, { x: maxTime, y: 0 });
-            }
-
-            datasets.unshift(constraintDataset);
-
             if (!Number.isFinite(minValue)) {
                 minValue = 0;
             }
@@ -369,6 +357,37 @@
             }
 
             const xMax = maxTime > 0 ? maxTime : 1;
+
+            const constraintDefs = [
+                { value: 0.0, dash: [], width: 4 },
+                { value: 0.2, dash: [4, 6], width: 3 }
+            ];
+
+            constraintDefs.forEach(def => {
+                minValue = Math.min(minValue, def.value);
+                maxValue = Math.max(maxValue, def.value);
+            });
+
+            const constraintDatasets = constraintDefs.map(def => ({
+                ...lineStyle,
+                tension: 0,
+                label: def.value === 0.0 ? 'Hard constraint' : 'Soft constraint',
+                data: [
+                    { x: 0, y: def.value },
+                    { x: xMax, y: def.value }
+                ],
+                borderColor: '#000000',
+                borderDash: def.dash,
+                borderWidth: def.width,
+                yAxisID: 'constraint',
+                order: 0,
+                pointRadius: 0,
+                pointHoverRadius: 0,
+                legendLabel: 'Constraint',
+                scenarioKey: 'constraint'
+            }));
+
+            datasets.unshift(...constraintDatasets);
 
             new Chart(canvas, {
                 type: 'line',
@@ -403,7 +422,7 @@
                         },
                         constraint: {
                             type: 'linear',
-                            min: -1.0,
+                            min: -0.2,
                             max: 4.0,
                             title: {
                                 display: true,
@@ -425,6 +444,221 @@
         }
     };
 
+    const buildInterRobotDistanceChart = async (canvas) => {
+        try {
+            const results = await Promise.all(
+                scenarios.map(async (scenario) => {
+                    const [distanceRows, horizontalRows] = await Promise.all([
+                        loadTable(scenario.interDistancePath, parseDistanceTable),
+                        loadTable(scenario.interHorizontalDistancePath, parseDistanceTable)
+                    ]);
+                    return { scenario, distanceRows, horizontalRows };
+                })
+            );
+
+            const available = results.filter(item => item.distanceRows.length && item.horizontalRows.length);
+            if (!available.length) {
+                return;
+            }
+
+            let maxTime = 0;
+            let minValue = Number.POSITIVE_INFINITY;
+            let maxValue = Number.NEGATIVE_INFINITY;
+
+            const datasets = [];
+
+            available.forEach(({ scenario, distanceRows, horizontalRows }) => {
+                const pairCount = Math.min(
+                    distanceRows[0]?.distances?.length ?? 0,
+                    horizontalRows[0]?.distances?.length ?? 0
+                );
+
+                if (!pairCount) {
+                    return;
+                }
+
+                const linkDatasets = [];
+                for (let pair = 0; pair < pairCount; pair += 1) {
+                    linkDatasets.push({
+                        ...lineStyle,
+                        label: `${scenario.label} robots ${pair} - ${pair + 1}`,
+                        data: [],
+                        borderColor: scenario.color,
+                        yAxisID: 'distance',
+                        order: 1,
+                        pointHoverRadius: 0,
+                        radius: 0,
+                        legendLabel: scenario.label,
+                        scenarioKey: scenario.key
+                    });
+                    linkDatasets.push({
+                        ...lineStyle,
+                        label: `${scenario.label} robots ${pair} - ${pair + 1} horizontal`,
+                        data: [],
+                        borderColor: scenario.color,
+                        borderDash: [8, 6],
+                        yAxisID: 'distance',
+                        order: 1,
+                        pointHoverRadius: 0,
+                        radius: 0,
+                        legendLabel: scenario.label,
+                        scenarioKey: scenario.key
+                    });
+                }
+
+                const rowCount = Math.min(distanceRows.length, horizontalRows.length);
+                for (let i = 0; i < rowCount; i += 1) {
+                    const distanceRow = distanceRows[i];
+                    const horizontalRow = horizontalRows[i];
+                    if (!distanceRow || !horizontalRow) {
+                        continue;
+                    }
+
+                    const time = Number.isFinite(distanceRow.time) ? distanceRow.time : horizontalRow.time;
+                    if (!Number.isFinite(time)) {
+                        continue;
+                    }
+
+                    if (time > maxTime) {
+                        maxTime = time;
+                    }
+
+                    for (let pair = 0; pair < pairCount; pair += 1) {
+                        const actual = distanceRow.distances?.[pair];
+                        if (Number.isFinite(actual)) {
+                            const dataset = linkDatasets[pair * 2];
+                            dataset.data.push({ x: time, y: actual });
+                            if (actual < minValue) {
+                                minValue = actual;
+                            }
+                            if (actual > maxValue) {
+                                maxValue = actual;
+                            }
+                        }
+
+                        const horizontal = horizontalRow.distances?.[pair];
+                        if (Number.isFinite(horizontal)) {
+                            const dataset = linkDatasets[pair * 2 + 1];
+                            dataset.data.push({ x: time, y: horizontal });
+                            if (horizontal < minValue) {
+                                minValue = horizontal;
+                            }
+                            if (horizontal > maxValue) {
+                                maxValue = horizontal;
+                            }
+                        }
+                    }
+                }
+
+                linkDatasets.forEach(ds => {
+                    if (ds.data.length) {
+                        datasets.push(ds);
+                    }
+                });
+            });
+
+            if (!Number.isFinite(minValue)) {
+                minValue = 0;
+            }
+            if (!Number.isFinite(maxValue)) {
+                maxValue = 0;
+            }
+
+            const xMax = maxTime > 0 ? maxTime : 1;
+
+            const constraintValues = [
+                { value: 0.0, dash: [], width: 4 },
+                { value: 3.0, dash: [], width: 4 },
+                { value: 0.2, dash: [4, 6], width: 3 },
+                { value: 2.8, dash: [4, 6], width: 3 }
+            ];
+
+            constraintValues.forEach(def => {
+                minValue = Math.min(minValue, def.value);
+                maxValue = Math.max(maxValue, def.value);
+            });
+
+            const constraintDatasets = constraintValues.map(def => ({
+                ...lineStyle,
+                tension: 0,
+                label: def.value === 0.2 || def.value === 2.8 ? 'Soft constraint' : 'Hard constraint',
+                data: [
+                    { x: 0, y: def.value },
+                    { x: xMax, y: def.value }
+                ],
+                borderColor: '#000000',
+                borderDash: def.dash,
+                borderWidth: def.width,
+                yAxisID: 'distance',
+                order: 0,
+                pointRadius: 0,
+                pointHoverRadius: 0,
+                legendLabel: 'Constraint',
+                scenarioKey: 'constraint'
+            }));
+
+            datasets.unshift(...constraintDatasets);
+
+            const range = maxValue - minValue;
+            const padding = range > 0 ? range * 0.1 : 0.2;
+            const axisMin = Math.min(-0.2, minValue - padding);
+            const axisMax = Math.max(3.2, maxValue + padding);
+
+            new Chart(canvas, {
+                type: 'line',
+                data: { datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: createScenarioLegendOptions(),
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            min: 0,
+                            max: 50.0,
+                            title: {
+                                display: true,
+                                text: 'time / s',
+                                color: colors.font,
+                                font: { size: 20 }
+                            },
+                            ticks: {
+                                color: colors.font,
+                                font: { size: 20 }
+                            },
+                            border: { color: '#000000' }
+                        },
+                        distance: {
+                            type: 'linear',
+                            min: -0.2,
+                            max: 3.2,
+                            title: {
+                                display: true,
+                                text: 'distance / m',
+                                color: colors.font,
+                                font: { size: 20 }
+                            },
+                            ticks: {
+                                color: colors.font,
+                                font: { size: 20 }
+                            },
+                            border: { color: '#000000' }
+                        }
+                    }
+                }
+            });
+        } catch (error) {
+            console.warn('Unable to render inter-robot distance chart:', error);
+        }
+    };
+
     const trackingCanvas = document.getElementById('tracking-error');
     if (trackingCanvas) {
         buildTrackingChart(trackingCanvas);
@@ -433,5 +667,10 @@
     const lowestCanvas = document.getElementById('lowest-point-constraint');
     if (lowestCanvas) {
         buildLowestPointChart(lowestCanvas);
+    }
+
+    const interRobotCanvas = document.getElementById('inter-robot-constraint');
+    if (interRobotCanvas) {
+        buildInterRobotDistanceChart(interRobotCanvas);
     }
 })();
