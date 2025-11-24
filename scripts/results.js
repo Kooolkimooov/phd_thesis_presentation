@@ -495,7 +495,6 @@
 
             available.forEach(({ scenario, rows }) => {
                 const computeData = [];
-                const horizonData = [];
 
                 rows.forEach(row => {
                     if (!Number.isFinite(row.time)) {
@@ -515,35 +514,7 @@
                             maxValue = row.computeTime;
                         }
                     }
-
-                    if (Number.isFinite(row.horizon) && row.horizon > 0) {
-                        horizonData.push({ x: row.time, y: row.horizon });
-                        if (row.horizon < minValue) {
-                            minValue = row.horizon;
-                        }
-                        if (row.horizon > maxValue) {
-                            maxValue = row.horizon;
-                        }
-                    }
                 });
-
-                if (horizonData.length) {
-                    datasets.push({
-                        ...lineStyle,
-                        label: 'Horizon depth',
-                        data: horizonData,
-                        borderColor: scenario.color,
-                        borderDash: [10, 6],
-                        borderWidth: 4,
-                        tension: 0,
-                        yAxisID: 'compute',
-                        order: 0,
-                        pointRadius: 0,
-                        pointHoverRadius: 0,
-                        legendLabel: scenario.label,
-                        scenarioKey: scenario.key
-                    });
-                }
 
                 if (computeData.length) {
                     datasets.push({
@@ -598,7 +569,7 @@
                         x: {
                             type: 'linear',
                             min: 0,
-                            max: xMax,
+                            max: 50.0,
                             title: {
                                 display: true,
                                 text: 'time / s',
