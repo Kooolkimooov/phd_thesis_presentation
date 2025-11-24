@@ -22,7 +22,8 @@
             trackingPath: './data/vs_simulation__br_0_position_tracking_error_1758791034.txt',
             distancePath: './data/vs_simulation_distance_to_seafloor_1758791034.txt',
             interDistancePath: './data/vs_simulation_distance_1758791034.txt',
-            interHorizontalDistancePath: './data/vs_simulation_horizontal_distance_1758791034.txt'
+            interHorizontalDistancePath: './data/vs_simulation_horizontal_distance_1758791034.txt',
+            computePath: null
         },
         {
             key: 'pp1',
@@ -31,7 +32,8 @@
             trackingPath: './data/pp_simulation_1__br_0_position_tracking_error_1757607544.txt',
             distancePath: './data/pp_simulation_1_distance_to_seafloor_1757607544.txt',
             interDistancePath: './data/pp_simulation_1_distance_1757607544.txt',
-            interHorizontalDistancePath: './data/pp_simulation_1_horizontal_distance_1757607544.txt'
+            interHorizontalDistancePath: './data/pp_simulation_1_horizontal_distance_1757607544.txt',
+            computePath: './data/pp_simulation_1_compute_times_1757607544.txt'
         },
         {
             key: 'pp2',
@@ -40,7 +42,8 @@
             trackingPath: './data/pp_simulation_2__br_0_position_tracking_error_1758052568.txt',
             distancePath: './data/pp_simulation_2_distance_to_seafloor_1758052568.txt',
             interDistancePath: './data/pp_simulation_2_distance_1758052568.txt',
-            interHorizontalDistancePath: './data/pp_simulation_2_horizontal_distance_1758052568.txt'
+            interHorizontalDistancePath: './data/pp_simulation_2_horizontal_distance_1758052568.txt',
+            computePath: './data/pp_simulation_2_compute_times_1758052568.txt'
         },
         {
             key: 'mpc',
@@ -49,7 +52,8 @@
             trackingPath: './data/mpc_simulation__br_0_position_tracking_error_1757359864.txt',
             distancePath: './data/mpc_simulation_distance_to_seafloor_1757359864.txt',
             interDistancePath: './data/mpc_simulation_distance_1757359864.txt',
-            interHorizontalDistancePath: './data/mpc_simulation_horizontal_distance_1757359864.txt'
+            interHorizontalDistancePath: './data/mpc_simulation_horizontal_distance_1757359864.txt',
+            computePath: './data/mpc_simulation_compute_times_1757359864.txt'
         }
     ];
 
@@ -154,6 +158,28 @@
                     return null;
                 }
                 return { time, distances };
+            })
+            .filter(Boolean);
+    };
+
+    const parseComputeTimesTable = (source) => {
+        return source
+            .split(/\r?\n/)
+            .map(line => line.trim())
+            .filter(line => line && !line.startsWith('%'))
+            .map(line => {
+                const parts = line.split(/\s+/);
+                const time = Number(parts[0]);
+                const compute = Number(parts[1]);
+                const horizon = Number(parts[2]);
+                if (!Number.isFinite(time) || !Number.isFinite(compute)) {
+                    return null;
+                }
+                return {
+                    time,
+                    computeTime: compute,
+                    horizon: Number.isFinite(horizon) ? horizon : null
+                };
             })
             .filter(Boolean);
     };
@@ -444,6 +470,187 @@
         }
     };
 
+    const buildComputeTimesChart = async (canvas) => {
+        try {
+            const results = await Promise.all(
+                scenarios.map(async (scenario) => {
+                    if (!scenario.computePath) {
+                        return { scenario, rows: [] };
+                    }
+                    const rows = await loadTable(scenario.computePath, parseComputeTimesTable);
+                    return { scenario, rows };
+                })
+            );
+
+            const available = results.filter(item => item.rows.length);
+            if (!available.length) {
+                return;
+            }
+
+            let maxTime = 0;
+            let minValue = Number.POSITIVE_INFINITY;
+            let maxValue = Number.NEGATIVE_INFINITY;
+
+            const datasets = [];
+
+            available.forEach(({ scenario, rows }) => {
+                const computeData = [];
+                const horizonData = [];
+
+                rows.forEach(row => {
+                    if (!Number.isFinite(row.time)) {
+                        return;
+                    }
+
+                    if (row.time > maxTime) {
+                        maxTime = row.time;
+                    }
+
+                    if (Number.isFinite(row.computeTime) && row.computeTime > 0) {
+                        computeData.push({ x: row.time, y: row.computeTime });
+                        if (row.computeTime < minValue) {
+                            minValue = row.computeTime;
+                        }
+                        if (row.computeTime > maxValue) {
+                            maxValue = row.computeTime;
+                        }
+                    }
+
+                    if (Number.isFinite(row.horizon) && row.horizon > 0) {
+                        horizonData.push({ x: row.time, y: row.horizon });
+                        if (row.horizon < minValue) {
+                            minValue = row.horizon;
+                        }
+                        if (row.horizon > maxValue) {
+                            maxValue = row.horizon;
+                        }
+                    }
+                });
+
+                if (horizonData.length) {
+                    datasets.push({
+                        ...lineStyle,
+                        label: 'Horizon depth',
+                        data: horizonData,
+                        borderColor: scenario.color,
+                        borderDash: [10, 6],
+                        borderWidth: 4,
+                        tension: 0,
+                        yAxisID: 'compute',
+                        order: 0,
+                        pointRadius: 0,
+                        pointHoverRadius: 0,
+                        legendLabel: scenario.label,
+                        scenarioKey: scenario.key
+                    });
+                }
+
+                if (computeData.length) {
+                    datasets.push({
+                        ...lineStyle,
+                        label: 'Compute time',
+                        data: computeData,
+                        borderColor: scenario.color,
+                        borderDash: [],
+                        borderWidth: 2,
+                        tension: 0,
+                        yAxisID: 'compute',
+                        order: 1,
+                        pointRadius: 0,
+                        pointHoverRadius: 0,
+                        legendLabel: scenario.label,
+                        scenarioKey: scenario.key
+                    });
+                }
+            });
+
+            if (!datasets.length) {
+                return;
+            }
+
+            const xMax = maxTime > 0 ? maxTime : 1;
+            const positiveMin = Number.isFinite(minValue) && minValue > 0 ? minValue : 1e-3;
+            let yMin = positiveMin * 0.5;
+            let yMax = Number.isFinite(maxValue) && maxValue > 0 ? maxValue * 1.2 : positiveMin * 10;
+
+            if (yMin <= 0) {
+                yMin = positiveMin * 0.5;
+            }
+            if (yMax <= yMin) {
+                yMax = yMin * 10;
+            }
+
+            new Chart(canvas, {
+                type: 'line',
+                data: { datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: createScenarioLegendOptions(),
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            min: 0,
+                            max: xMax,
+                            title: {
+                                display: true,
+                                text: 'time / s',
+                                color: colors.font,
+                                font: { size: 20 }
+                            },
+                            ticks: {
+                                color: colors.font,
+                                font: { size: 20 }
+                            },
+                            border: { color: '#000000' }
+                        },
+                        compute: {
+                            type: 'logarithmic',
+                            min: yMin,
+                            max: yMax,
+                            title: {
+                                display: true,
+                                text: 'time / s',
+                                color: colors.font,
+                                font: { size: 20 }
+                            },
+                            ticks: {
+                                color: colors.font,
+                                font: { size: 20 },
+                                callback(value) {
+                                    const numeric = Number(value);
+                                    if (!Number.isFinite(numeric) || numeric <= 0) {
+                                        return '';
+                                    }
+                                    if (numeric >= 10) {
+                                        return Math.round(numeric).toString();
+                                    }
+                                    if (numeric >= 1) {
+                                        return numeric.toFixed(1);
+                                    }
+                                    if (numeric >= 0.1) {
+                                        return numeric.toFixed(2);
+                                    }
+                                    return numeric.toExponential(1);
+                                }
+                            },
+                            border: { color: '#000000' }
+                        }
+                    }
+                }
+            });
+        } catch (error) {
+            console.warn('Unable to render compute time chart:', error);
+        }
+    };
+
     const buildInterRobotDistanceChart = async (canvas) => {
         try {
             const results = await Promise.all(
@@ -672,5 +879,10 @@
     const interRobotCanvas = document.getElementById('inter-robot-constraint');
     if (interRobotCanvas) {
         buildInterRobotDistanceChart(interRobotCanvas);
+    }
+
+    const computeCanvas = document.getElementById('compute-times');
+    if (computeCanvas) {
+        buildComputeTimesChart(computeCanvas);
     }
 })();
