@@ -443,13 +443,6 @@
 
                     <section>
 
-                        <video class="fragment" data-play-on-fragment controls src="media/Catenary.mp4"
-                            style="height: 80vh;"></video>
-
-                    </section>
-
-                    <section>
-
                         <h3>
                             $\gamma$-augmentation
                         </h3>
@@ -502,6 +495,13 @@
                             </div>
 
                         </div>
+
+                    </section>
+
+                    <section>
+
+                        <video class="fragment" data-play-on-fragment loop controls src="media/Catenary.mp4"
+                            style="height: 80vh;"></video>
 
                     </section>
 
@@ -988,6 +988,38 @@
 
                             <div style="flex:1 1 45%">
                                 <img src="media/vertical_catenary_forces.png">
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section>
+
+                        <h3>
+                            Robot Chain Model
+                        </h3>
+
+                        <div style="display:flex; gap:1cm;">
+
+                            <div style="flex:1 1 45%">
+                                <img src="media/robot_chain_representation.png">
+                            </div>
+
+                            <div style="flex:1 1 45%;">
+
+                                <h4>Definition</h4>
+
+                                <p style="text-align:left;">
+                                    Let the state and input vectors of a robot chain of size $n$ be defined as:
+                                </p>
+                                <p><!--noformat-->
+                                    \begin{align}
+                                        \vect{x} &= \left[\ldvect{\eta}{0}, \ldvect{\nu}{0}, \dots, \ldvect{\eta}{n-1}, \ldvect{\nu}{n-1}\right]^{\top} \\
+                                        \vect{u} &= \left[\ldvect{\tau}{0}, \dots, \ldvect{\tau}{n-1}\right]^{\top}
+                                    \end{align}
+                                </p><!--noformat-->
+
                             </div>
 
                         </div>
