@@ -31,7 +31,7 @@
         },
         {
             key: 'pp2',
-            label: 'Path Planning (error-triggered)',
+            label: 'Path Planning (triggered)',
             color: palette.pp2,
             trackingPath: './data/pp_simulation_2__br_0_position_tracking_error_1758052568.txt',
             distancePath: './data/pp_simulation_2_distance_to_seafloor_1758052568.txt'
@@ -290,6 +290,19 @@
             let maxValue = Number.NEGATIVE_INFINITY;
 
             const datasets = [];
+            const constraintDataset = {
+                ...lineStyle,
+                label: 'constraint',
+                data: [],
+                borderColor: '#333333',
+                borderDash: [2, 6],
+                yAxisID: 'constraint',
+                order: 0,
+                pointRadius: 0,
+                pointHoverRadius: 0,
+                fill: false,
+                legendLabel: 'Constraint'
+            };
 
             const cableStyles = [
                 { description: 'cable 1', borderDash: [] },
@@ -332,6 +345,7 @@
                             dataset.data.push({ x: row.time, y: distance });
                         }
                     });
+                    constraintDataset.data.push({ x: row.time, y: 0 });
                 });
 
                 cableDatasets.forEach(ds => {
@@ -340,6 +354,12 @@
                     }
                 });
             });
+
+            if (!constraintDataset.data.length && maxTime > 0) {
+                constraintDataset.data.push({ x: 0, y: 0 }, { x: maxTime, y: 0 });
+            }
+
+            datasets.unshift(constraintDataset);
 
             if (!Number.isFinite(minValue)) {
                 minValue = 0;
