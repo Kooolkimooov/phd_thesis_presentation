@@ -10,6 +10,7 @@
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@sgratzl/chartjs-chart-boxplot": "^4.4.5",
     "chart.js": "^4.5.1",
+    "plotly.js": "^3.2.0",
     "mathjax": "^3.2.2",
     "reveal.js": "github:hakimel/reveal.js#master",
     "reveal.js-plugins": "^4.6.0",
