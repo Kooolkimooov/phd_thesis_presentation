@@ -1007,7 +1007,8 @@
                             \end{align}
                         </p><!--noformat-->
 
-                            <img class="fragment fade-in-then-out" style="position: absolute; background-color: white; left: 25%; top: 25%;"
+                            <img class="fragment fade-in-then-out"
+                                style="position: absolute; background-color: white; left: 25%; top: 25%;"
                                 src="./media/vertical_catenary_schematic.png" />
 
                         <p class="fragment fade-in" style="text-align: left;">
@@ -1114,7 +1115,8 @@
                                 </p>
                                 <ul style="text-align: left; white-space: nowrap;">
                                     <li class="fragment fade-in" data-fragment-index="1">
-                                        $\vect{u}=\left(\ldvect{u}{0}, \dots, \ldvect{u}{h}\right)$ the optimized control sequence
+                                        $\vect{u}=\left(\ldvect{u}{0}, \dots, \ldvect{u}{h}\right)$ the optimized
+                                        control sequence
                                     </li>
                                     <li class="fragment fade-in" data-fragment-index="2">
                                         $\res{k} = \ldvect{x}{k}-\llvect{x}{\text{target}}{k}$ the error at step $k$
@@ -1227,17 +1229,30 @@
                             Results: Reactive Controller Trajectory
                         </h3>
 
-                        video
+                        <video class="fragment" data-play-on-fragment controls src="media/VS.mp4"
+                            style="height: 75vh;"></video>
 
                     </section>
 
                     <section>
 
                         <h3>
-                            Results: Path Planning Trajectory
+                            Results: Path Planning Trajectory with Systematic Replanning
                         </h3>
 
-                        video
+                        <video class="fragment" data-play-on-fragment controls src="media/PP1.mp4"
+                            style="height: 75vh;"></video>
+
+                    </section>
+
+                    <section>
+
+                        <h3>
+                            Results: Path Planning Trajectory with Replanning on Error
+                        </h3>
+
+                        <video class="fragment" data-play-on-fragment controls src="media/PP2.mp4"
+                            style="height: 75vh;"></video>
 
                     </section>
 
@@ -1247,7 +1262,8 @@
                             Results: Model Predictive Control Trajectory
                         </h3>
 
-                        video
+                        <video class="fragment" data-play-on-fragment controls src="media/MPC.mp4"
+                            style="height: 75vh;"></video>
 
                     </section>
 
