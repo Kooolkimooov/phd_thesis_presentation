@@ -713,7 +713,8 @@
                                 </ul>
                             </li>
                             <li class="fragment fade-in">
-                                Work in progress: Dynamic expression of the augmentation angles
+                                Work in progress: Dynamic expression of the augmentation angles as a function of robot
+                                chain state
                             </li>
                         </ul>
 
@@ -730,22 +731,23 @@
                     <section>
 
                         <div
-                            style="display:flex; justify-content:center; align-items:center; gap:1rem; flex-wrap:nowrap; height:80vh;">
-                            <iframe
-                                data-src="https://www.youtube-nocookie.com/embed/3SaKKjl6os0?start=24&autoplay=1&mute=1"
-                                title="YouTube video player" width="960" height="540"
-                                style="border:0; max-width:100%; aspect-ratio:16 / 9;"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-                            <iframe
-                                data-src="https://www.youtube-nocookie.com/embed/1s3_K6tq9IU?start=37&autoplay=1&mute=1"
-                                title="YouTube video player" width="960" height="540"
-                                style="border:0; max-width:100%; aspect-ratio:16 / 9;"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
+                            style="display:flex; justify-content:center; align-items:center; gap:1cm; padding-top: 4cm;">
+                            <div style="width: 50%;">
+                                <video class="fragment" controls data-play-on-fragment data-fragment-index="1" loop
+                                    muted src="./media/The-Catenary-Robot-Trim.mp4"></video>
+                                <p style="font-size: 70%; padding: 0; margin: 0;">D'Antonio, et al., « The Catenary
+                                    Robot: Design and Control of a Cable Propelled by Two Quadrotors », IEEE RAL
+                                </p>
+                            </div>
+                            <div style="width:40%">
+                                <video class="fragment" controls data-play-on-fragment data-fragment-index="1" loop
+                                    muted src="./media/Asservissement-visuel-trim.mp4" style="height: 50vh;"></video>
+                                <p style="font-size: 70%; padding: 0; margin: 0;">M. Laranjeira, et al., «
+                                    Catenary-based visual servoing for tethered robots », in 2017 IEEE ICRA 2017
+                                </p>
+                            </div>
                         </div>
+
                     </section>
 
                     <section>
@@ -1029,6 +1031,66 @@
                     <section>
 
                         <h3>
+                            Simulation Setup
+                        </h3>
+
+                        <div class="fragment fade-in" style="display:flex; gap:1cm;">
+
+                            <div style="flex:1 1 45%">
+                                <img src="media/mpc_simulation_tank.png">
+                            </div>
+
+                            <div style="flex:1 1 45%;">
+
+                                <h4>Scenario</h4>
+
+                                <ul style="text-align: left;">
+                                    <li>
+                                        4 robot chain system
+                                    </li>
+                                    <li class="fragment fade-in">
+                                        Tailored environment and trajectory
+                                    </li>
+                                    <li class="fragment fade-in">
+                                        Under actuated robots:
+                                        <ul style="font-size: 90%;">
+                                            <li>
+                                                ROVs with linear and yaw actuation
+                                            </li>
+                                            <li>
+                                                USV with forward and yaw actuation
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <h4 class="fragment fade-in" style="padding-top: 0cm;">
+                                    Runs
+                                </h4>
+
+                                <ul style="text-align: left;">
+                                    <li class="fragment fade-in">Peer-to-peer reactive controller</li>
+                                    <li class="fragment fade-in">
+                                        Path planning
+                                        <ul style="text-align: left; font-size: 90%;">
+                                            <li>Systematic replanning</li>
+                                            <li class="fragment fade-in">Replanning after time or error limit</li>
+                                        </ul>
+                                    </li>
+                                    <li class="fragment fade-in">
+                                        Model predictive control
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section>
+
+                        <h3>
                             Reactive Control
                         </h3>
 
@@ -1130,7 +1192,7 @@
                         <p class="fragment fade-in-then-out"
                             style="position: absolute; padding-top: 9cm; left: 50%; transform: translateX(-50%); white-space: nowrap;"
                             data-fragment-index="8">
-                            Path is tracked with a simple controller
+                            Path is tracked with a PID controller
                         </p>
                         <p class="fragment fade-in"
                             style="position: absolute; padding-top: 9cm; left: 50%; transform: translateX(-50%); white-space: nowrap;"
@@ -1277,7 +1339,7 @@
                     <section>
 
                         <h3>
-                            Results: Reactive Controller Trajectory
+                            Results: Reactive Controller
                         </h3>
 
                         <video class="fragment" data-play-on-fragment controls src="media/VS.mp4"
@@ -1288,7 +1350,7 @@
                     <section>
 
                         <h3>
-                            Results: Path Planning Trajectory with Systematic Replanning
+                            Results: Path Planning with Systematic Replanning
                         </h3>
 
                         <video class="fragment" data-play-on-fragment controls src="media/PP1.mp4"
@@ -1299,7 +1361,7 @@
                     <section>
 
                         <h3>
-                            Results: Path Planning Trajectory with Replanning on Error
+                            Results: Path Planning with Replanning on Error
                         </h3>
 
                         <video class="fragment" data-play-on-fragment controls src="media/PP2.mp4"
@@ -1310,7 +1372,7 @@
                     <section>
 
                         <h3>
-                            Results: Model Predictive Control Trajectory
+                            Results: Model Predictive Control
                         </h3>
 
                         <video class="fragment" data-play-on-fragment controls src="media/MPC.mp4"
@@ -1321,7 +1383,7 @@
                     <section>
 
                         <h3>
-                            Results: Comparisons, Tracking Error
+                            Results: Comparisons, Leader Tracking Error
                         </h3>
 
                         <div class="sequence-chart">
