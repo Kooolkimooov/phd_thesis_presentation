@@ -115,13 +115,13 @@
                         <li>
                             Tethered
                         </li>
-                        <li class="fragment fade-in">
+                        <li>
                             Power supply
                         </li>
-                        <li class="fragment fade-in">
+                        <li>
                             Real-time communication
                         </li>
-                        <li class="fragment fade-in">
+                        <li>
                             Physical link to the robot
                         </li>
                     </ul>
@@ -131,10 +131,10 @@
                         <li>
                             Entanglement
                         </li>
-                        <li class="fragment fade-in">
+                        <li>
                             Disturbances on the robot
                         </li>
-                        <li class="fragment fade-in">
+                        <li>
                             Deployment constraints
                         </li>
                     </ul>
@@ -238,14 +238,13 @@
                             Experimental Setup
                         </h3>
                         <h6 style="position: fixed; bottom: 0%; text-align: left;">
-                            <p class="fragment fade-in" data-fragment-index="7" style="margin: 0; padding: 0;">
+                            <p class="fragment fade-in" data-fragment-index="4" style="margin: 0; padding: 0;">
                                 ¹ <a
                                     href="https://www.qualisys.com/cameras/underwater/">https://www.qualisys.com/cameras/underwater/</a>
                             </p>
                         </h6>
 
-                        <div class="fragment fade-in" data-fragment-index="1"
-                            style="display:flex; gap:1cm; padding-top: 1cm;">
+                        <div style="display:flex; gap:1cm; padding-top: 1cm;">
 
                             <div style="flex:1 1 45%">
                                 <img width="100%" src="./media/catenary_experiment_bluerov_picture_1.jpg" />
@@ -254,13 +253,17 @@
                             <div style="flex:1 1 45%;">
 
                                 <ul style="text-align: left;">
-                                    <li>Cable attached to the robot and a static point</li>
-                                    <li class="fragment fade-in" data-fragment-index="2">Pool: 7m x 4m x 3m</li>
-                                    <li class="fragment fade-in" data-fragment-index="3">Eight different cables</li>
-                                    <li class="fragment fade-in" data-fragment-index="4">Two speeds</li>
-                                    <li class="fragment fade-in" data-fragment-index="5">Two starting points</li>
-                                    <li class="fragment fade-in" data-fragment-index="6">Two direction of motion</li>
-                                    <li class="fragment fade-in" data-fragment-index="7">Tracked on a Qualisys¹ motion
+                                    <span class="fragment fade-in" data-fragment-index="1">
+                                        <li>Cable attached to the robot and a static point</li>
+                                        <li>Pool: 7m x 4m x 3m</li>
+                                    </span>
+                                    <li class="fragment fade-in" data-fragment-index="2">Eight different cables</li>
+                                    <span class="fragment fade-in" data-fragment-index="3">
+                                        <li>Two speeds</li>
+                                        <li>Two starting points</li>
+                                        <li>Two direction of motion</li>
+                                    </span>
+                                    <li class="fragment fade-in" data-fragment-index="4">Tracked on a Qualisys¹ motion
                                         capture system</li>
                                 </ul>
 
@@ -280,7 +283,7 @@
                             Cables Tested
                         </h3>
 
-                        <table class="fragment fade-in" style="width: 90%;">
+                        <table style="width: 90%;">
                             <tr>
                                 <td style="border: none; text-align: center;">
                                     <img width="290vh" src="./media/cable_coaxial.jpg">
@@ -360,7 +363,7 @@
                             </div>
                             <!-- ref matheus, catenary robot, -->
                             <div style="flex:1 1 45%;">
-                                <div class="fragment fade-out" data-fragment-index="6" style="position: absolute">
+                                <div class="fragment fade-out" data-fragment-index="2" style="position: absolute">
                                     <p style="text-align:left;">
                                         Described by:
                                     </p>
@@ -371,15 +374,19 @@
                                     <ul style="text-align: left; padding-top: 1cm;">
                                         <li>With $\catC \in
                                             \mathbb{R}^*_+$</li>
-                                        <li class="fragment fade-in" data-fragment-index="1">Defined in the vertical
-                                            plane $\lplanefullxz{v}$</li>
-                                        <li class="fragment fade-in" data-fragment-index="2">Homogeneous</li>
-                                        <li class="fragment fade-in" data-fragment-index="3">Non elastic</li>
-                                        <li class="fragment fade-in" data-fragment-index="4">Infinitely flexible</li>
-                                        <li class="fragment fade-in" data-fragment-index="5">Only subject to weight</li>
+                                        <span class="fragment fade-in" data-fragment-index="1">
+                                            <li>Defined in the vertical
+                                                plane $\lplanefullxz{v}$</li>
+                                            <li>Homogeneous</li>
+                                            <li>Non elastic</li>
+                                            <li>Infinitely flexible
+                                            </li>
+                                            <li>Only subject to weight
+                                            </li>
+                                        </span>
                                     </ul>
                                 </div>
-                                <div class="fragment fade-in" data-fragment-index="6" style="position: absolute">
+                                <div class="fragment fade-in" data-fragment-index="2" style="position: absolute">
                                     <p style="padding-top: 5cm;">
                                         In water, Buoyancy << Weight </p>
                                 </div>
