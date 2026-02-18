@@ -76,6 +76,7 @@
                     const legendLabel = dataset.legendLabel ?? dataset.label ?? item.text ?? key;
                     const meta = chart.getDatasetMeta(item.datasetIndex);
                     if (!scenarioMap.has(key)) {
+                        const visible = chart.isDatasetVisible(item.datasetIndex);
                         scenarioMap.set(key, {
                             ...item,
                             text: legendLabel,
@@ -83,13 +84,13 @@
                             strokeStyle: dataset.borderColor,
                             lineDash: dataset.borderDash || [],
                             lineWidth: dataset.borderWidth ?? lineStyle.borderWidth,
-                            hidden: meta.hidden === true,
+                            hidden: !visible,
                             datasetIndex: item.datasetIndex,
                             scenarioKey: key
                         });
                     } else {
                         const entry = scenarioMap.get(key);
-                        if (meta.hidden !== true) {
+                        if (chart.isDatasetVisible(item.datasetIndex)) {
                             entry.hidden = false;
                         }
                     }
@@ -104,9 +105,7 @@
             chart.data.datasets.forEach((dataset, index) => {
                 const key = dataset.scenarioKey ?? dataset.legendLabel ?? dataset.label ?? `dataset-${index}`;
                 if (key === scenarioKey) {
-                    const meta = chart.getDatasetMeta(index);
-                    const hidden = meta.hidden === null ? false : meta.hidden;
-                    if (!hidden) {
+                    if (chart.isDatasetVisible(index)) {
                         anyVisible = true;
                     }
                 }
@@ -115,8 +114,7 @@
             chart.data.datasets.forEach((dataset, index) => {
                 const key = dataset.scenarioKey ?? dataset.legendLabel ?? dataset.label ?? `dataset-${index}`;
                 if (key === scenarioKey) {
-                    const meta = chart.getDatasetMeta(index);
-                    meta.hidden = anyVisible ? true : null;
+                    chart.setDatasetVisibility(index, !anyVisible);
                 }
             });
 
@@ -235,6 +233,7 @@
                     label: scenario.label,
                     data,
                     borderColor: scenario.color,
+                    hidden: scenario.key !== 'vs',
                     yAxisID: 'error',
                     legendLabel: scenario.label,
                     scenarioKey: scenario.key
@@ -247,10 +246,7 @@
                 return dataset;
             });
 
-            const xMax = maxTime > 0 ? maxTime : 1;
-            const yMax = maxNorm > 0 ? maxNorm * 1.1 : 1;
-
-            new Chart(canvas, {
+            const chart = new Chart(canvas, {
                 type: 'line',
                 data: { datasets },
                 options: {
@@ -300,6 +296,12 @@
                     }
                 }
             });
+
+            chart.data.datasets.forEach((dataset, index) => {
+                const key = dataset.scenarioKey ?? dataset.legendLabel ?? dataset.label ?? `dataset-${index}`;
+                chart.setDatasetVisibility(index, key === 'vs');
+            });
+            chart.update();
         } catch (error) {
             console.warn('Unable to render tracking comparison chart:', error);
         }
@@ -415,7 +417,7 @@
 
             datasets.unshift(...constraintDatasets);
 
-            new Chart(canvas, {
+            const chart = new Chart(canvas, {
                 type: 'line',
                 data: { datasets },
                 options: {
@@ -465,6 +467,12 @@
                     }
                 }
             });
+
+            chart.data.datasets.forEach((dataset, index) => {
+                const key = dataset.scenarioKey ?? dataset.legendLabel ?? dataset.label ?? `dataset-${index}`;
+                chart.setDatasetVisibility(index, key === 'vs' || key === 'constraint');
+            });
+            chart.update();
         } catch (error) {
             console.warn('Unable to render lowest-point comparison chart:', error);
         }
@@ -551,7 +559,7 @@
                 yMax = yMin * 10;
             }
 
-            new Chart(canvas, {
+            const chart = new Chart(canvas, {
                 type: 'line',
                 data: { datasets },
                 options: {
@@ -782,7 +790,7 @@
             const axisMin = Math.min(-0.2, minValue - padding);
             const axisMax = Math.max(3.2, maxValue + padding);
 
-            new Chart(canvas, {
+            const chart = new Chart(canvas, {
                 type: 'line',
                 data: { datasets },
                 options: {
@@ -832,6 +840,12 @@
                     }
                 }
             });
+
+            chart.data.datasets.forEach((dataset, index) => {
+                const key = dataset.scenarioKey ?? dataset.legendLabel ?? dataset.label ?? `dataset-${index}`;
+                chart.setDatasetVisibility(index, key === 'vs' || key === 'constraint');
+            });
+            chart.update();
         } catch (error) {
             console.warn('Unable to render inter-robot distance chart:', error);
         }
